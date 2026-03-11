@@ -10,7 +10,7 @@ interface Player {
   playername: string;
   role: PlayerRole;
   tags: Tag;
-  teamId: { _id: string; teamname: string };
+  // teamId: { _id: string; teamname: string };
 }
 
 interface Team {
@@ -27,12 +27,12 @@ const Player = () => {
     playername: string;
     role: PlayerRole;
     tags: Tag;
-    teamId: string;
+    // teamId: string;
   }>({
     playername: "",
     role: "",
     tags: "",
-    teamId: "",
+    // teamId: "",
   });
 
   const token = localStorage.getItem("token");
@@ -82,7 +82,7 @@ const Player = () => {
 
     if (response.ok) {
       alert("Player Created");
-      setFormData({ playername: "", role: "", tags: "", teamId: "" });
+      setFormData({ playername: "", role: "", tags: ""});
       fetchPlayers();
     } else {
       alert(data.msg || "Failed");
@@ -97,7 +97,7 @@ const Player = () => {
       playername: player.playername,
       role: player.role,
       tags: player.tags,
-      teamId: player.teamId?._id,
+      // teamId: player.teamId?._id,
     });
   };
 
@@ -122,7 +122,7 @@ const Player = () => {
     if (response.ok) {
       alert("Player Updated");
       setEditingPlayer(null);
-      setFormData({ playername: "", role: "", tags: "", teamId: "" });
+      setFormData({ playername: "", role: "", tags: "", });
       fetchPlayers();
     } else {
       alert(data.message || "Update Failed");
@@ -191,7 +191,7 @@ const Player = () => {
         </select>
 
         
-        <select
+        {/* <select
           value={formData.teamId}
           onChange={(e) =>
             setFormData({ ...formData, teamId: e.target.value })
@@ -204,7 +204,7 @@ const Player = () => {
               {team.teamname}
             </option>
           ))}
-        </select>
+        </select> */}
 
         {editingPlayer ? (
           <>
@@ -216,7 +216,7 @@ const Player = () => {
                   playername: "",
                   role: "",
                   tags: "",
-                  teamId: "",
+                  
                 });
               }}
             >
@@ -237,7 +237,7 @@ const Player = () => {
             <th>Player</th>
             <th>Role</th>
             <th>Tags</th>
-            <th>Team</th>
+            {/* <th>Team</th> */}
             <th>Actions</th>
           </tr>
         </thead>
@@ -248,7 +248,7 @@ const Player = () => {
               <td>{p.playername}</td>
               <td>{p.role}</td>
               <td>{p.tags === "Wise-Captain" ? "Vice Captain" : p.tags}</td>
-              <td>{p.teamId?.teamname}</td>
+              {/* <td>{p.teamId?.teamname}</td> */}
 
               <td>
                 <button onClick={() => handleEdit(p)}>Edit</button>
