@@ -3,6 +3,8 @@
   import { useNavigate, useParams } from "react-router-dom";
   const URL = import.meta.env.VITE_API_URL;
   import '../styles/Toss.css'
+import Coin from  '../../components/Coin'
+
 
   interface Match {
     _id: string;
@@ -111,7 +113,8 @@
 
     <h1 className="toss-title">MATCH TOSS</h1>
 
-    <div className="coin"></div>
+      <h2 className="coin-heading">Tap To Flip a Coin</h2>
+    <div className="coin"><Coin/></div>
 
     <form onSubmit={handlSubmit}>
 

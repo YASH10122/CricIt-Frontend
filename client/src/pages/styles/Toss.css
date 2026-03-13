@@ -19,22 +19,27 @@
 }
 
 /* Coin */
-.coin{
+/* .coin{
   @apply w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center text-2xl;
   background:#7b7d7e;
   color:#111;
   box-shadow:0 0 5px #00C2FF;
-  animation:spin 3s linear infinite;
-}
+  animation:spin 4s linear infinite;
+} */
 
 /* Coin Spin */
-@keyframes spin{
+/* @keyframes spin{
   from{ transform:rotateY(0deg); }
   to{ transform:rotateY(360deg); }
+} */
+
+ .coin-heading{
+  @apply text-xl mt-4 mb-3 font-semibold;
+  color:#fff;
 }
 
-/* Heading */
-.toss-heading{
+/* Heading */ 
+ .toss-heading{
   @apply text-xl mt-4 mb-3 font-semibold;
   color:#fff;
 }
