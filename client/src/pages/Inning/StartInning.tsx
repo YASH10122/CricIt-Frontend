@@ -45,37 +45,38 @@ const StartInning = () => {
       const match: Match = await response.json();
 
       let batting: Player[] = [];
-      let bowling: Player[] = [];
+let bowling: Player[] = [];
 
-      const opponent =
-        match.tossWinner === match.teamA._id
-          ? match.teamB._id
-          : match.teamA._id;
+const opponent =
+  match.tossWinner.toString() !== match.teamA._id.toString()
+    ? match.teamB._id
+    : match.teamA._id;
 
-      if (match.tossDecision === "bat") {
-        batting =
-          match.tossWinner === match.teamA._id
-            ? match.playingTeamA
-            : match.playingTeamB;
+if (match.tossDecision === "bat") {
+  batting =
+    match.tossWinner.toString() === match.teamA._id.toString()
+      ? match.playingTeamA
+      : match.playingTeamB;
 
-        bowling =
-          match.tossWinner === match.teamA._id
-            ? match.playingTeamB
-            : match.playingTeamA;
-      } else {
-        batting =
-          opponent === match.teamA._id
-            ? match.playingTeamA
-            : match.playingTeamB;
+  bowling =
+    match.tossWinner.toString() === match.teamA._id.toString()
+      ? match.playingTeamB
+      : match.playingTeamA;
 
-        bowling =
-          opponent === match.teamA._id
-            ? match.playingTeamB
-            : match.playingTeamA;
-      }
+} else {
+  batting =
+    opponent.toString() === match.teamA._id.toString()
+      ? match.playingTeamA
+      : match.playingTeamB;
 
-      setBattingPlayers(batting);
-      setBowlingPlayers(bowling);
+  bowling =
+    opponent.toString() === match.teamA._id.toString()
+      ? match.playingTeamB
+      : match.playingTeamA;
+}
+
+setBattingPlayers(batting);
+setBowlingPlayers(bowling);
     } catch (error) {
       console.log("Error loading players");
     }

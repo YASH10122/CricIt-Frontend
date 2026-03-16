@@ -13,6 +13,7 @@ import Toss from "./pages/Match/Toss";
 //import PlayingTeam from "./pages/Match/PlayingTeam";
 import AllMatch from "./pages/Match/AllMatch";
 import StartInning from "./pages/Inning/StartInning";
+import LiveScoring from "./pages/Ball/LiveScore";
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
         <Route path='/toss/:matchId' element={<Toss/>} />
         <Route path="/all" element={<AllMatch/>}/>
         <Route path="/startInning/:matchId" element={<StartInning/>}/>
+       <Route path="/live-scoring/:matchId/:inningId" element={<LiveScoring />} />
       </Routes>
       <Footer />
     </BrowserRouter>
