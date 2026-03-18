@@ -1,10 +1,97 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&family=Syne:wght@600;700;800&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Background - warm cream */
+  --bg:          #fdf6ee;
+  --bg2:         #faebd7;
 
-* {
-  font-family: 'Lato', sans-serif;
+  /* Cards - dark warm stone */
+  --surface:     #1c1917;
+  --surface2:    #292524;
+
+  /* Borders */
+  --border:      #3a3330;
+
+  /* Accent - bright orange */
+  --orange:      #f97316;
+  --orange-lt:   #fdba74;
+  --orange-glow: rgba(249,115,22,0.22);
+
+  /* Text */
+  --white:       #fafaf9;
+  --dark:        #1c1917;
+  --muted:       #78716c;
+  --muted-lt:    #a8a29e;
+
+  /* Special */
+  --gold:        #f6c90e;
+  --red:         #ef4444;
+  --teal:        #2dd4bf;
+  --blue:        #60a5fa;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse 55% 35% at 85% 8%,  rgba(249,115,22,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 25% at 8%  92%,  rgba(249,115,22,0.05) 0%, transparent 55%);
+  color: var(--dark);
+  font-family: 'Rajdhani', sans-serif;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 { font-family: 'Rajdhani', sans-serif; }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: #d6cfc8; border-radius: 4px; }
+
+/* ── shared input (inside dark card) ── */
+.cricit-input {
+  width: 100%;
+  background: rgba(0,0,0,0.28);
+  border: 1.5px solid var(--border);
+  color: var(--white);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.cricit-input:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px var(--orange-glow);
+}
+.cricit-input::placeholder { color: var(--muted); }
+.cricit-input option { background: var(--surface); color: var(--white); }
+
+/* ── primary button ── */
+.cricit-btn-primary {
+  background: var(--orange);
+  color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 13px 28px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+}
+.cricit-btn-primary:hover {
+  background: #ea6c0a;
+  box-shadow: 0 0 22px var(--orange-glow);
+  transform: translateY(-1px);
 }

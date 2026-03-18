@@ -1,51 +1,79 @@
+/* Team.css */
+
 .team-page {
-  @apply max-h-screen bg-slate-950 text-white px-8 py-10;
+  min-height: 100vh;
+  background: var(--bg);
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
 }
 
-.team-create {
-  @apply mb-6;
-}
-
-.team-next {
-  @apply mb-6 text-right;
-}
-
-.next-btn {
-  @apply px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-bold hover:scale-105 transition;
-}
+.team-create { width: 100%; max-width: 440px; }
 
 .team-list-card {
-  @apply bg-slate-900 p-6 rounded-2xl shadow-2xl border border-cyan-500/30;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 28px 32px;
+  width: 100%;
+  max-width: 700px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
 }
 
 .team-title {
-  @apply text-2xl font-bold mb-6;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.team-title::before {
+  content: '';
+  width: 4px;
+  height: 22px;
+  background: var(--orange);
+  border-radius: 2px;
 }
 
 .table-wrapper {
-  @apply overflow-x-auto;
+  overflow-x: auto;
+  border-radius: 14px;
+  border: 1px solid var(--border);
 }
 
-.team-table {
-  @apply w-full border-collapse;
+.team-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.team-table thead tr {
+  background: rgba(0,0,0,0.3);
+  color: var(--muted-lt);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
-
-.team-table thead {
-  @apply bg-slate-800;
-}
-
-.team-table th {
-  @apply text-left p-4 text-gray-300;
-}
-
-.team-table td {
-  @apply p-4 border-t border-slate-700;
-}
-
-.team-table tbody tr:hover {
-  @apply bg-slate-800/60;
-}
+.team-table thead th { padding: 12px 18px; text-align: left; font-weight: 600; }
+.team-table tbody tr { border-top: 1px solid var(--border); transition: background 0.15s; }
+.team-table tbody tr:hover { background: var(--surface2); }
+.team-table tbody td { padding: 15px 18px; color: var(--white); font-weight: 500; }
 
 .delete-btn {
-  @apply px-4 py-1 bg-red-600 rounded-lg text-sm hover:bg-red-500 transition;
+  background: transparent;
+  border: 1.5px solid rgba(239,68,68,0.4);
+  color: var(--red);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.delete-btn:hover {
+  background: rgba(239,68,68,0.12);
+  border-color: var(--red);
 }

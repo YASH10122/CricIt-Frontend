@@ -1,90 +1,129 @@
-/* Page */
-.toss-page{
-  @apply min-h-screen flex items-center justify-center;
-  background:#0B1D3A;
-  font-family:'Poppins',sans-serif;
+/* Toss.css */
+
+.toss-page {
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
 }
 
-/* Card */
-.toss-card{
-  @apply w-[460px] p-8 rounded-2xl shadow-2xl text-center;
-  background:#111;
+.toss-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 24px;
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.2);
 }
 
-/* Title */
-.toss-title{
-  @apply text-4xl mb-6;
-  font-family:'Orbitron',sans-serif;
-  color:#00C2FF;
+.toss-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: 0.06em;
+  text-align: center;
 }
 
-/* Coin */
-/* .coin{
-  @apply w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center text-2xl;
-  background:#7b7d7e;
-  color:#111;
-  box-shadow:0 0 5px #00C2FF;
-  animation:spin 4s linear infinite;
-} */
-
-/* Coin Spin */
-/* @keyframes spin{
-  from{ transform:rotateY(0deg); }
-  to{ transform:rotateY(360deg); }
-} */
-
- .coin-heading{
-  @apply text-xl mt-4 mb-3 font-semibold;
-  color:#fff;
+.coin-heading {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted-lt);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
-/* Heading */ 
- .toss-heading{
-  @apply text-xl mt-4 mb-3 font-semibold;
-  color:#fff;
+.coin { margin: 4px 0; }
+
+.toss-heading {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted-lt);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
 }
 
-/* Team Box */
-.team-option{
-  @apply flex items-center justify-between p-3 mb-3 rounded-xl cursor-pointer transition;
-  border:2px solid #00C2FF;
-  color:#fff;
+.team-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0,0,0,0.25);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  width: 100%;
+  transition: border-color 0.2s, background 0.2s;
 }
-
-.team-option:hover{
-  background:#00C2FF;
-  color:#111;
+.team-option:has(input:checked) {
+  border-color: var(--orange);
+  background: rgba(249,115,22,0.1);
 }
+.team-option:hover { border-color: rgba(249,115,22,0.5); }
 
-/* Team Name */
-.team-name{
-  @apply text-lg font-bold;
+.team-name {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
 }
+.team-option:has(input:checked) .team-name { color: var(--orange-lt); }
+.team-option input[type="radio"] { accent-color: var(--orange); width: 16px; height: 16px; }
 
-/* Decision */
-.decision-box{
-  @apply flex gap-4 justify-center mt-3;
+.decision-box { display: flex; gap: 12px; width: 100%; }
+
+.decision-option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0,0,0,0.25);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 20px;
+  cursor: pointer;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  transition: border-color 0.2s, background 0.2s;
 }
-
-.decision-option{
-  @apply px-6 py-2 rounded-xl font-semibold cursor-pointer transition;
-  border:2px solid #00C2FF;
-  color:#fff;
+.decision-option:has(input:checked) {
+  border-color: var(--orange);
+  background: rgba(249,115,22,0.1);
+  color: var(--orange-lt);
 }
+.decision-option:hover { border-color: rgba(249,115,22,0.5); }
+.decision-option input[type="radio"] { accent-color: var(--orange); width: 16px; height: 16px; }
 
-.decision-option:hover{
-  background:#00C2FF;
-  color:#111;
+.play-btn {
+  width: 100%;
+  background: var(--orange);
+  color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 16px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  margin-top: 4px;
 }
-
-/* Button */
-.play-btn{
-  @apply w-full py-3 mt-6 rounded-xl text-lg font-bold transition;
-  background:#00C2FF;
-  color:#111;
-  font-family:'Orbitron',sans-serif;
-}
-
-.play-btn:hover{
-  background:#009ed1;
+.play-btn:hover {
+  background: #ea6c0a;
+  box-shadow: 0 0 30px var(--orange-glow);
+  transform: translateY(-1px);
 }

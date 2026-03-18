@@ -1,27 +1,116 @@
+/* Register.css */
+
 .register-page {
-  @apply min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-blue-950 to-black;
+  min-height: 100vh;
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse 55% 35% at 85% 8%, rgba(249,115,22,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 25% at 8% 92%, rgba(249,115,22,0.05) 0%, transparent 55%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
 }
 
 .register-card {
-  @apply bg-slate-900 p-10 rounded-2xl shadow-2xl w-full max-w-lg border border-lime-500/30;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 24px;
+  padding: 44px 40px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.2), inset 4px 0 0 var(--orange);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
 .register-title {
-  @apply text-3xl font-bold text-white mb-6 text-center;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.register-title::before {
+  content: '';
+  width: 4px;
+  height: 26px;
+  background: var(--orange);
+  border-radius: 2px;
 }
 
 .register-form {
-  @apply flex flex-col gap-4;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.form-group label {
-  @apply text-gray-300 text-sm;
+/* reuse .form-group from global */
+.register-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
 }
 
-.form-group input {
-  @apply w-full px-4 py-2 rounded-lg bg-slate-800 text-white border border-gray-600 focus:border-lime-500 focus:outline-none;
+.register-form .form-group label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted-lt);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
+
+.register-form .form-group input {
+  width: 100%;
+  background: rgba(0,0,0,0.28);
+  border: 1.5px solid var(--border);
+  color: var(--white);
+  border-radius: 12px;
+  padding: 13px 16px;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.register-form .form-group input:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px var(--orange-glow);
+}
+.register-form .form-group input::placeholder { color: var(--muted-lt); }
 
 .register-btn {
-  @apply mt-4 py-3 bg-gradient-to-r from-lime-500 to-green-500 text-black font-bold rounded-lg hover:scale-105 transition;
+  width: 100%;
+  background: var(--orange);
+  color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 15px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
 }
+.register-btn:hover {
+  background: #ea6c0a;
+  box-shadow: 0 0 26px var(--orange-glow);
+  transform: translateY(-1px);
+}
+
+.register-card .login-link {
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted-lt);
+}
+.register-card .login-link a {
+  color: var(--orange-lt);
+  font-weight: 600;
+  text-decoration: none;
+}
+.register-card .login-link a:hover { color: var(--orange); } 

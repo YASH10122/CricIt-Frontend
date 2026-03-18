@@ -1,35 +1,114 @@
+/* PlayingTeam.css */
+
 .playing-team-page {
-  @apply min-h-screen bg-slate-950 text-white p-8;
+  min-height: 100vh;
+  background: var(--bg);
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
 }
 
 .playing-title {
-  @apply text-3xl font-bold mb-8;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--dark);
+  text-align: center;
+}
+.playing-title::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: var(--orange);
+  border-radius: 2px;
+  margin: 10px auto 0;
 }
 
 .playing-container {
-  @apply grid grid-cols-1 md:grid-cols-2 gap-8 mb-8;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  max-width: 860px;
 }
+@media (max-width: 640px) { .playing-container { grid-template-columns: 1fr; } }
 
 .team-box {
-  @apply bg-slate-900 p-6 rounded-2xl shadow-xl border border-cyan-500/30;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
 }
 
 .team-heading {
-  @apply text-xl font-bold mb-4;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--orange-lt);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
 }
 
 .player-row {
-  @apply flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800 transition;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.player-row:hover { background: var(--surface2); border-color: var(--border); }
+.player-row:has(.player-checkbox:checked) {
+  background: rgba(249,115,22,0.1);
+  border-color: rgba(249,115,22,0.4);
+}
+.player-row:has(.player-checkbox:checked) .player-name {
+  color: var(--orange-lt);
+  font-weight: 600;
 }
 
 .player-checkbox {
-  @apply w-4 h-4 accent-cyan-500;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--orange);
+  cursor: pointer;
 }
 
 .player-name {
-  @apply text-gray-300;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--white);
+  transition: color 0.15s;
 }
 
 .submit-playing-btn {
-  @apply px-6 py-3 bg-gradient-to-r from-lime-500 to-green-500 text-black font-bold rounded-lg hover:scale-105 transition;
+  background: var(--orange);
+  color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 15px 48px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+}
+.submit-playing-btn:hover {
+  background: #ea6c0a;
+  box-shadow: 0 0 26px var(--orange-glow);
+  transform: translateY(-1px);
 }

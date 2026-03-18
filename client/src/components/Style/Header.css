@@ -1,43 +1,146 @@
+/* Header.css */
+
 .header {
-    @apply bg-gray-900 text-white shadow-md;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(226, 217, 202, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(58,51,48,0.12);
 }
 
 .header-container {
-    @apply max-w-7xl mx-auto flex items-center justify-between px-6 py-3;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
 }
 
+/* ── Logo section ── */
 .logo-section {
-    @apply flex flex-col;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex-shrink: 0;
 }
 
 .logo {
-    @apply text-2xl font-bold text-green-400 hover:text-green-300 transition;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--dark);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+  line-height: 1;
+  transition: color 0.2s;
 }
+.logo span { color: var(--orange); }
+.logo:hover { color: var(--orange); }
 
 .tagline {
-    @apply text-xs text-gray-300;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
 }
 
+/* ── Nav menu ── */
 .nav-menu {
-    @apply flex gap-6 text-sm font-medium;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .nav-menu a {
-    @apply hover:text-green-400 transition;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 7px 14px;
+  border-radius: 8px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: background 0.15s, color 0.15s;
+}
+.nav-menu a:hover {
+  background: rgba(249,115,22,0.08);
+  color: var(--orange);
+}
+.nav-menu a.active {
+  background: rgba(249,115,22,0.1);
+  color: var(--orange);
 }
 
-.nav-menu .active {
-    @apply text-green-400 border-b-2 border-green-400 pb-1;
+@media (max-width: 640px) {
+  .nav-menu { display: none; }
 }
 
+/* ── User section ── */
 .user-section {
-    @apply flex items-center;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
+/* LIVE badge */
 .live-indicator {
-    @apply bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.3);
+  color: var(--red);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+.live-indicator::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+  animation: blink 1.1s infinite;
+  flex-shrink: 0;
+}
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0.2; }
 }
 
+/* auth buttons */
 .auth-btn {
-    @apply ml-3 px-4 py-1.5 bg-green-600 hover:bg-green-500 rounded text-sm font-medium transition;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border-radius: 9px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--dark);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
+  display: inline-flex;
+  align-items: center;
+}
+.auth-btn:hover {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: #fff;
+  box-shadow: 0 0 16px var(--orange-glow);
 }
