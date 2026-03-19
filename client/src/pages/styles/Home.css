@@ -11,38 +11,6 @@
   flex-direction: column;
 }
 
-/* ── Ticker ── */
-.ticker {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 10px 0;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.animate-marquee {
-  display: inline-block;
-  animation: marquee 28s linear infinite;
-}
-
-@keyframes marquee {
-  0%   { transform: translateX(100vw); }
-  100% { transform: translateX(-100%); }
-}
-
-.ticker-text {
-  font-family: 'DM Mono', monospace;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--orange-lt);
-  margin-right: 80px;
-  letter-spacing: 0.04em;
-}
-.ticker-text::before {
-  content: '● ';
-  color: var(--orange);
-  font-size: 10px;
-}
 
 /* ── Hero container ── */
 .hero-container {

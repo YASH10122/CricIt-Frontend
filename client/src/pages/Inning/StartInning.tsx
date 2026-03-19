@@ -17,6 +17,7 @@ interface Match {
   tossDecision: "bat" | "bowl";
   playingTeamA: Player[];
   playingTeamB: Player[];
+  inningNumber: number;
 }
 
 const StartInning = () => {
@@ -26,7 +27,8 @@ const StartInning = () => {
   const navigate = useNavigate();
 
   const [battingPlayers, setBattingPlayers] = useState<Player[]>([]);
-  const [bowlingPlayers, setBowlingPlayers] = useState<Player[]>([]);
+const [bowlingPlayers, setBowlingPlayers] = useState<Player[]>([]);
+
 
   const [formData, setFormData] = useState({
     striker: "",

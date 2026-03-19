@@ -14,6 +14,7 @@ import Toss from "./pages/Match/Toss";
 import AllMatch from "./pages/Match/AllMatch";
 import StartInning from "./pages/Inning/StartInning";
 import LiveScoring from "./pages/Ball/LiveScore";
+import  LiveHeader  from "./components/LiveHeader";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
 
     <BrowserRouter>
       <Header />
+      <LiveHeader/>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/register" element={<Register/>}/>

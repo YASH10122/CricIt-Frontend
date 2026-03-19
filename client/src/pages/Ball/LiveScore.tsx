@@ -215,7 +215,8 @@ const LiveScore = () => {
       <div className="commentry-box">
         <h3 className="section-title">Commentary</h3>
         {commentry.map((c, i) => (
-          <p className="comment-line" key={i}>{c}</p>
+          <p className="comment-line" key={i}> {c}</p>
+          
         ))}
       </div>
  

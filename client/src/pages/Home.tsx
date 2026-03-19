@@ -17,12 +17,12 @@ const Home = () => {
     <div className="home-bg">
 
       
-      <div className="ticker">
+      {/* <div className="ticker">
         <div className="animate-marquee">
           <span className="ticker-text"> IND vs AUS - India 245/4 (45.2 overs)</span>
           <span className="ticker-text"> ENG vs PAK - England won by 5 wickets</span>
         </div>
-      </div>
+      </div> */}
 
       
       <div className="hero-container">
