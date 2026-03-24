@@ -27,7 +27,7 @@
 
 /* ── Hero title ── */
 .hero-title {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: clamp(36px, 6vw, 64px);
   font-weight: 800;
   color: var(--dark);
@@ -100,7 +100,7 @@
 }
 
 .team-name {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: 18px;
   font-weight: 700;
   color: var(--white);
@@ -108,7 +108,7 @@
 }
 
 .team-score-lime {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: 36px;
   font-weight: 800;
   color: #a3e635;
@@ -117,7 +117,7 @@
 }
 
 .team-score-cyan {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: 36px;
   font-weight: 800;
   color: #22d3ee;
@@ -133,7 +133,7 @@
 }
 
 .vs-text {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: 22px;
   font-weight: 800;
   color: var(--muted-lt);
@@ -147,7 +147,7 @@
   background: rgba(249,115,22,0.12);
   border: 1px solid rgba(249,115,22,0.3);
   color: var(--orange-lt);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -190,7 +190,7 @@
 }
 
 .feature-title {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: 17px;
   font-weight: 700;
   color: var(--white);
@@ -212,7 +212,7 @@
 .btn-login {
   background: var(--orange);
   color: #fff;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 0.08em;
@@ -232,7 +232,7 @@
 .btn-register {
   background: transparent;
   color: var(--dark);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 0.08em;

@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&family=Syne:wght@600;700;800&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lato:wght@300;400;500;600;700&display=swap');
 
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lato:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -45,11 +47,11 @@ body {
     radial-gradient(ellipse 55% 35% at 85% 8%,  rgba(249,115,22,0.07) 0%, transparent 60%),
     radial-gradient(ellipse 40% 25% at 8%  92%,  rgba(249,115,22,0.05) 0%, transparent 55%);
   color: var(--dark);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Lato', sans-serif;
   min-height: 100vh;
 }
 
-h1, h2, h3, h4 { font-family: 'Rajdhani', sans-serif; }
+h1, h2, h3, h4 { font-family: 'Lato', sans-serif; }
 
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: var(--bg2); }
@@ -79,7 +81,7 @@ h1, h2, h3, h4 { font-family: 'Rajdhani', sans-serif; }
 .cricit-btn-primary {
   background: var(--orange);
   color: #fff;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-weight: 700;
   font-size: 13px;
   letter-spacing: 0.08em;
