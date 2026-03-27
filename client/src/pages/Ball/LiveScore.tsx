@@ -53,9 +53,25 @@ const LiveScore = () => {
     setInningInfo(inningRes.data);
   };
 
+
+
+
+
+
+
+
   useEffect(() => {
     loadData();
   }, []);
+
+
+
+
+
+
+
+
+
 
   const addBall = async (data: any) => {
     try {
@@ -64,7 +80,6 @@ const LiveScore = () => {
         data,
       );
       loadData();
-
       const updatedInning = res.data.inning;
       if (
         updatedInning.ballsInCurrentOver === 0 &&
@@ -78,10 +93,28 @@ const LiveScore = () => {
       loadData();
     }
   };
+
+
+
+
+
+
+
+
+
   const undoBall = async () => {
     await axios.delete(`${URL}/api/ball/undo/${inningId}`);
     loadData();
   };
+
+
+
+
+
+
+
+
+
 
   const confirmWicket = () => {
     addBall({
@@ -92,6 +125,9 @@ const LiveScore = () => {
     });
     setWicket(false);
   };
+
+
+
 
   const changeBowler = async () => {
     if (!newBowler) return alert("Please select a bowler");
@@ -104,19 +140,22 @@ const LiveScore = () => {
     loadData();
   };
 
+
+
   const Crr = score.overs
     ? (score.runs / parseFloat(score.overs)).toFixed(2)
     : null;
+
+
 
   const rrr =
     inningInfo.target && score.overs
       ? (
           (inningInfo.target - score.runs) /
-          (inningInfo.totalOvers - parseFloat(score.overs))
+          (parseFloat(inningInfo.totalOvers) - parseFloat(score.overs))
         ).toFixed(2)
       : null;
 
-  console.log(inningInfo);
 
   const handleStartSecondInning = async () => {
     const res = await axios.post(`${URL}/api/inning/secstart/${matchId}`);
@@ -125,9 +164,46 @@ const LiveScore = () => {
 
     navigate(`/second-inning-setup/${matchId}/${inningId}`);
   };
+
+  // const handleEndMatch = async () => {
+
+  //   const responce = await axios.post(`${URL}/api/match/end/${matchId}`);
+
+
+  //   console.log("Match End Response:", responce.data);
+  //   navigate("/");
+  //   alert("match finish........");
+  // };
+
+
+  const handleEndMatch = async () => {
+  try {
+    
+  
+
+    alert("Match finished ✅");
+
+    navigate("/");
+  } catch (error: any) {
+    console.error("End Match Error:", error);
+  }
+};
+
   return (
     <div className="live-container">
       <h1 className="live-title">Live Score</h1>
+
+      {/* start 222 */}
+      {inningInfo.status === "completed" && inningInfo.inningNumber === 1 && (
+        <button onClick={handleStartSecondInning} className="undo-btn">
+          Start Second Inning
+        </button>
+      )}
+
+      {/* end match */}
+      {inningInfo.inningNumber === 2 && inningInfo.status === "completed" && (
+        <button onClick={handleEndMatch} className="undo-btn">end match</button>
+      )}
 
       <div className="live-grid">
         <div className="score-box">
@@ -139,7 +215,7 @@ const LiveScore = () => {
             {inningInfo.target && (
               <>
                 <p className="target-text">Target : {inningInfo.target}</p>
-                <p className="rr-text"> | RRR : {rrr}</p>
+                <p className="rr-text"> RRR : {rrr} </p>
               </>
             )}
             <p className="rr-text">CRR : {Crr} </p>
@@ -199,7 +275,7 @@ const LiveScore = () => {
             </button>
 
             <button className="undo-btn" onClick={undoBall}>
-              ↩ Undo Last Ball
+              ↩ Undo
             </button>
           </div>
         </div>
@@ -234,12 +310,6 @@ const LiveScore = () => {
               </span>
             </div>
           ))}
-          {inningInfo.status === "completed" &&
-            inningInfo.inningNumber === 1 && (
-              <button onClick={handleStartSecondInning} className="undo-btn">
-                Start Second Inning
-              </button>
-            )}
         </div>
 
         <div className="commentry-box">
