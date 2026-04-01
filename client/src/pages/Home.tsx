@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles/Home.css";
 
+console.log("defhiushgfd");
+
+
 const URL = import.meta.env.VITE_API_URL;
 
 interface Team {
