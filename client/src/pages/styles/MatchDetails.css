@@ -10,8 +10,8 @@
 .details-error {
   text-align: center;
   padding: 60px 16px;
-  color: var(--muted);
-  font-size: 16px;
+  color: #57534e;
+  font-size: 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,7 +32,7 @@
   cursor: pointer;
   margin-bottom: 24px;
   display: inline-block;
-  transition: color 0.15s, border-color 0.15s;
+  transition: all 0.2s ease;
 }
 
 .back-btn:hover {
@@ -49,7 +49,6 @@
   font-size: 22px;
   font-weight: 800;
   color: var(--dark);
-  letter-spacing: -0.02em;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -58,8 +57,7 @@
 }
 
 .details-vs {
-  color: var(--muted);
-  font-weight: 400;
+  color: #57534e;
   font-size: 16px;
 }
 
@@ -70,7 +68,7 @@
   flex-wrap: wrap;
 }
 
-/* ── Shared Badge (reuse from Home) ── */
+/* ── Badge ── */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -81,6 +79,7 @@
   font-weight: 700;
   letter-spacing: 0.07em;
   border: 1px solid transparent;
+  text-transform: uppercase;
 }
 
 .badge--type {
@@ -109,7 +108,7 @@
 
 /* ── Details Card ── */
 .details-card {
-  background: var(--surface);
+  background: #18181b; /* darker for better contrast */
   border-radius: 18px;
   border: 1px solid var(--border);
   padding: 18px 20px;
@@ -130,7 +129,7 @@
 }
 
 .info-label {
-  color: var(--muted);
+  color: #a8a29e;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.07em;
@@ -156,7 +155,7 @@
 }
 
 .score-card {
-  background: var(--surface);
+  background: #18181b;
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 16px 18px;
@@ -173,16 +172,13 @@
   font-size: 11px;
   font-weight: 700;
   color: var(--orange-lt);
-  letter-spacing: 0.04em;
   margin-bottom: 6px;
 }
 
 .score-card__team {
   color: var(--muted-lt);
   font-size: 11px;
-  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
   margin-bottom: 6px;
 }
 
@@ -190,8 +186,6 @@
   color: var(--white);
   font-size: 30px;
   font-weight: 900;
-  letter-spacing: -0.03em;
-  line-height: 1;
 }
 
 .score-card__wickets {
@@ -206,39 +200,62 @@
   margin-top: 5px;
 }
 
-/* ── Players Grid ── */
-.players-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-@media (max-width: 480px) {
-  .players-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .scores-row {
-    grid-template-columns: 1fr;
-  }
-
-  .info-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
+/* ── Section ── */
 .section-title {
-  color: var(--white);
+  color: var(--dark); /* FIXED */
   font-weight: 700;
   font-size: 14px;
   margin-bottom: 12px;
-  letter-spacing: -0.01em;
 }
 
 .section-divider {
   height: 1px;
   background: var(--border);
   margin-bottom: 12px;
+}
+
+/* ── Innings Fix (IMPORTANT) ── */
+.innings-label {
+  color: var(--white);
+  font-weight: 600;
+}
+
+.innings-score-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.innings-runs {
+  color: var(--white);
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.innings-wickets {
+  color: var(--orange-lt);
+}
+
+.innings-overs {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.innings-target {
+  color: var(--orange-lt);
+  font-weight: 600;
+}
+
+.innings-target__need {
+  color: var(--white);
+  font-weight: 500;
+}
+
+/* ── Players ── */
+.players-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 
 .player-row {
@@ -259,16 +276,23 @@
   font-weight: 700;
   width: 18px;
   text-align: right;
-  flex-shrink: 0;
 }
 
 .player-row__name {
   color: var(--white);
   font-size: 13px;
-  font-weight: 500;
 }
 
 .players-empty {
-  color: var(--muted);
+  color: #57534e;
   font-size: 13px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .players-grid,
+  .scores-row,
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
 }
