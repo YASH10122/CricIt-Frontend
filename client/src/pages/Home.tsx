@@ -130,7 +130,7 @@ const Home = () => {
           <p className="match-empty">No matches found.</p>
         )}
 
-        {filteredMatches.map((match, index) => {
+        {filteredMatches.map((match) => {
           const isLive = match.status === "live";
           const isFinished = match.status === "finished";
 
@@ -145,7 +145,7 @@ const Home = () => {
             >
               {/* Top Row */}
               <div className="match-card__top">
-                <span className="match-card__num">Match #{index + 1}</span>
+                {/* <span className="match-card__num">Match #{index + 1}</span> */}
                 <div className="match-card__badges">
                   {match.matchType && (
                     <span className="badge badge--type">

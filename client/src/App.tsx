@@ -19,6 +19,7 @@ import LiveHeader from "./components/LiveHeader";
 import Profile from "./pages/User/Profile";
 import SecondInningSetup from "./pages/Inning/SecondInning";
 import MatchDetails from "./pages/MatchDetails";
+import PlayerHistory from "./pages/Player/PlayerHistory";
 
 function App() {
   return (
@@ -42,6 +43,8 @@ function App() {
         <Route path="/second-inning-setup/:matchId/:inningId" element={<SecondInningSetup/>}/>
 
         <Route path="/match-details/:matchId" element={<MatchDetails />} />
+
+        <Route path="/player-history/:playerId" element={<PlayerHistory />} />
       </Routes>
       <Footer />
     </BrowserRouter>

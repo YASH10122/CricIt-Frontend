@@ -73,10 +73,6 @@ const StartInning = () => {
 
 
 
-      // console.log("Toss Winner:", winnerTeamId);
-      // console.log("Team A :", teamAId);
-      // console.log("Team B :", teamBId);
-      // console.log(" Decision:", match.tossDecision);
 
       let battingTeamPlayers: Player[] = [];
       let bowlingTeamPlayers: Player[] = [];

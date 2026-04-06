@@ -5,9 +5,9 @@ import "../styles/LiveScore.css";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-  const URL = import.meta.env.VITE_API_URL;
+const URL = import.meta.env.VITE_API_URL;
 
-  const LiveScore = () => {
+const LiveScore = () => {
   const { matchId, inningId } = useParams();
 
   const navigate = useNavigate();
@@ -39,7 +39,10 @@ import { useNavigate, useParams } from "react-router-dom";
 
 
 
+  const [scorecard, setScorecard] = useState([]);
 
+
+  const [playerStats, setPlayerStats] = useState<any[]>([]);
 
 
   const loadData = async () => {
@@ -63,6 +66,14 @@ import { useNavigate, useParams } from "react-router-dom";
 
     const inningRes = await axios.get(`${URL}/api/inning/${inningId}`);
     setInningInfo(inningRes.data);
+
+
+    const scorecardRes = await axios.get(`${URL}/api/player/history/match/${matchId}`);
+    setScorecard(scorecardRes.data);
+
+
+    const historyRes = await axios.get(`${URL}/api/player/history/match/${matchId}`);
+    setPlayerStats(historyRes.data);
   };
 
 
@@ -183,12 +194,33 @@ import { useNavigate, useParams } from "react-router-dom";
 
 
 
+  const getPlayerStats = (playerId: string) => {
+    return playerStats.find(
+      (p: any) => p.playerId?._id === playerId
+    );
+  };
 
+  const getBowlerStats = (playerId: string) => {
+    return playerStats.find(
+      (p: any) => p.playerId?._id === playerId
+    );
+  };
+
+  const bowler = inningInfo?.currentBowler;
+  const bowlerStats = getBowlerStats(bowler?._id);
+
+  const balls = bowlerStats?.bowlingBalls || 0;
+
+  const overs = `${Math.floor(balls / 6)}.${balls % 6}`;
+
+  const nonStrikerStats = getPlayerStats(inningInfo.nonStriker?._id);
+  const strikerStats = getPlayerStats(inningInfo.striker?._id);
+  //const bowlerStats = getBowlerStats(inningInfo.currentBowler?._id);
 
 
   return (
     <div className="live-container">
-      
+
       {/* start 222 */}
       {inningInfo.status === "completed" && inningInfo.inningNumber === 1 && (
         <button onClick={handleStartSecondInning} className="undo-btn">
@@ -227,20 +259,38 @@ import { useNavigate, useParams } from "react-router-dom";
           <p className="player-box-header">At the Crease</p>
 
           <div className={`player-name striker`}>
+            {/* <span className="dot"></span>
+            {inningInfo.striker?.playername}
+            <span className="on-strike">*</span> */}
             <span className="dot"></span>
             {inningInfo.striker?.playername}
             <span className="on-strike">*</span>
+
+            <span style={{ marginLeft: "8px", color: "#aaa" }}>
+              {strikerStats?.battingRuns || 0} ({strikerStats?.battingBalls || 0})
+            </span>
           </div>
 
           <div className="player-name">
+            {/* <span className="dot"></span> */}
+            {/* {inningInfo.nonStriker?.playername} */}
             <span className="dot"></span>
             {inningInfo.nonStriker?.playername}
+
+            <span style={{ marginLeft: "8px", color: "#aaa" }}>
+              {nonStrikerStats?.runsConceded || 0} ({nonStrikerStats?.battingBalls || 0})
+            </span>
+
           </div>
 
           <div className="bowler-name">
             <span className="dot"></span>
-            <span className="bowler-label">Bowling ;</span>
+            {/* <span className="bowler-label">Bowling ;</span> */}
             {inningInfo.currentBowler?.playername}
+
+            <span className="bowler-stats">
+              {overs} ov | {bowlerStats?.runsConceded || 0} R | {bowlerStats?.wickets || 0} W
+            </span>
           </div>
         </div>
 
@@ -303,12 +353,17 @@ import { useNavigate, useParams } from "react-router-dom";
 
         <div className="scorecard-box">
           <h3 className="section-title">Scorecard</h3>
-          {inningInfo.batsmen?.map((player: any) => (
+          {/* {inningInfo.batsmen?.map((player: any) => (
             <div className="scorecard-row" key={player._id}>
               <span>{player.name}</span>
               <span>
                 {player.runs} ({player.balls})
               </span>
+            </div>
+          ))} */}
+          {scorecard.map((p: any) => (
+            <div key={p._id}>
+              {p.playerId?.playername} - {p.battingRuns} ({p.battingBalls})
             </div>
           ))}
         </div>
@@ -462,7 +517,7 @@ import { useNavigate, useParams } from "react-router-dom";
             </div>
 
             <div className="winner-box">
-             
+
               <p>{matchResult.resultDescription}</p>
             </div>
 

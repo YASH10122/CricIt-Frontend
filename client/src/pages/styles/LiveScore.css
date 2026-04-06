@@ -164,12 +164,17 @@
   border-top: 1px solid var(--border);
 }
 .bowler-name .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
-.bowler-label {
+/* .bowler-label {
   font-size: 10px;
   color: var(--muted-lt);
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+} */
+
+.bowler-stats {
+  color: var(--muted-lt);
+  font-size: 13px;
 }
 
 /* ─── Run Buttons card ──────────────────────── */

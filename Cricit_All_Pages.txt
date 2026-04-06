@@ -856,7 +856,7 @@ export default PlayingTeamPage;
 
 ---------------- Toss ---------------
 
-  import React from 'react'
+   import React from 'react'
   import { useState, useEffect } from 'react'
   import { useNavigate, useParams } from "react-router-dom";
   const URL = import.meta.env.VITE_API_URL;
@@ -1032,6 +1032,9 @@ interface Match {
   playingTeamB: Player[];
 }
 
+
+
+
 const StartInning = () => {
   const { matchId } = useParams();
   const token = localStorage.getItem("token");
@@ -1051,6 +1054,9 @@ const StartInning = () => {
     loadMatchData();
   }, []);
 
+
+  
+
   const loadMatchData = async () => {
     try {
       const response = await fetch(`${URL}/api/match/detail/${matchId}`, {
@@ -1060,7 +1066,7 @@ const StartInning = () => {
       const match: Match = await response.json();
 
       const teamAId = match.teamA._id;
-      const teamBId = match.teamB._id;
+      //const teamBId = match.teamB._id;
 
       let winnerTeamId: string;
       if (
@@ -1073,10 +1079,8 @@ const StartInning = () => {
         winnerTeamId = match.tossWinner as string;
       }
 
-      // console.log("Toss Winner:", winnerTeamId);
-      // console.log("Team A :", teamAId);
-      // console.log("Team B :", teamBId);
-      // console.log(" Decision:", match.tossDecision);
+
+
 
       let battingTeamPlayers: Player[] = [];
       let bowlingTeamPlayers: Player[] = [];
@@ -1145,6 +1149,7 @@ const StartInning = () => {
         },
         body: JSON.stringify(formData),
       });
+
 
       const data = await response.json();
 
@@ -1231,16 +1236,19 @@ export default StartInning;
 
 ---------------- LiveScore ---------------
 
+import axios from "axios";
 import "../styles/LiveScore.css";
 
-import axios from "axios";
+
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const URL = import.meta.env.VITE_API_URL;
+  const URL = import.meta.env.VITE_API_URL;
 
-const LiveScore = () => {
+  const LiveScore = () => {
   const { matchId, inningId } = useParams();
+
+  const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
 
@@ -1249,6 +1257,9 @@ const LiveScore = () => {
   const [players, setPlayers] = useState<any[]>([]);
   const [inningInfo, setInningInfo] = useState<any>({});
   const [commentry, setCommentry] = useState<string[]>([]);
+
+  const [matchEnd, setMatchEnd] = useState(false);
+  const [matchResult, setMatchResult] = useState<any>(null);
 
   const [wicket, setWicket] = useState(false);
   const [overDone, setOverDone] = useState(false);
@@ -1259,7 +1270,15 @@ const LiveScore = () => {
     newBatsman: "",
   });
 
+
+
+
   const [newBowler, setNewBowler] = useState("");
+
+
+
+
+
 
   const loadData = async () => {
     const scoreRes = await axios.get(`${URL}/api/ball/score/${inningId}`);
@@ -1284,9 +1303,14 @@ const LiveScore = () => {
     setInningInfo(inningRes.data);
   };
 
+
+
   useEffect(() => {
     loadData();
   }, []);
+
+
+
 
   const addBall = async (data: any) => {
     try {
@@ -1295,7 +1319,6 @@ const LiveScore = () => {
         data,
       );
       loadData();
-
       const updatedInning = res.data.inning;
       if (
         updatedInning.ballsInCurrentOver === 0 &&
@@ -1309,10 +1332,18 @@ const LiveScore = () => {
       loadData();
     }
   };
+
+
+
+
   const undoBall = async () => {
     await axios.delete(`${URL}/api/ball/undo/${inningId}`);
     loadData();
   };
+
+
+
+
 
   const confirmWicket = () => {
     addBall({
@@ -1323,6 +1354,9 @@ const LiveScore = () => {
     });
     setWicket(false);
   };
+
+
+
 
   const changeBowler = async () => {
     if (!newBowler) return alert("Please select a bowler");
@@ -1335,21 +1369,80 @@ const LiveScore = () => {
     loadData();
   };
 
+
+
   const Crr = score.overs
     ? (score.runs / parseFloat(score.overs)).toFixed(2)
     : null;
 
+
+
   const rrr =
     inningInfo.target && score.overs
       ? (
-          (inningInfo.target - score.runs) /
-          (inningInfo.totalOvers - parseFloat(score.overs))
-        ).toFixed(2)
+        (inningInfo.target - score.runs) /
+        (parseFloat(inningInfo.totalOvers) - parseFloat(score.overs))
+      ).toFixed(2)
       : null;
+
+
+  const handleStartSecondInning = async () => {
+    const res = await axios.post(`${URL}/api/inning/secstart/${matchId}`);
+
+    const inningId = res.data._id;
+
+    navigate(`/second-inning-setup/${matchId}/${inningId}`);
+  };
+
+
+
+  const handleEndMatch = async () => {
+    try {
+      const response = await axios.post(`${URL}/api/match/end/${matchId}`);
+      setMatchResult(response.data);
+      setMatchEnd(true);
+    } catch (error) {
+
+      alert("Failed to complete match");
+    }
+  }
+
+
+  useEffect(() => {
+    if (inningInfo.inningNumber === 2 && inningInfo.start === "completed" && !matchEnd) {
+      const timer = setTimeout(() => {
+        handleEndMatch();
+      }, 3000);
+      return () => { clearTimeout(timer) }
+    }
+  }, [inningInfo, matchEnd])
+
+
+
+
+
+
+
 
   return (
     <div className="live-container">
-      <h1 className="live-title">Live Score</h1>
+      
+      {/* start 222 */}
+      {inningInfo.status === "completed" && inningInfo.inningNumber === 1 && (
+        <button onClick={handleStartSecondInning} className="undo-btn">
+          Start Second Inning
+        </button>
+      )}
+
+      {/* end match */}
+
+
+      {inningInfo.status === "completed" && inningInfo.inningNumber === 2 && !matchEnd && (
+        <button onClick={handleEndMatch} className="undo-btn">
+          End Match
+        </button>
+      )}
+
 
       <div className="live-grid">
         <div className="score-box">
@@ -1357,11 +1450,11 @@ const LiveScore = () => {
             {score.runs || 0} / {score.wickets || 0}
           </h2>
           <div className="score-right">
-            <p className="overs-text">Overs : {score.overs}</p>
+            <p className="overs-text">Overs : {score.overs} | {inningInfo.totalOvers}</p>
             {inningInfo.target && (
               <>
                 <p className="target-text">Target : {inningInfo.target}</p>
-                <p className="rr-text"> | RRR : {rrr}</p>
+                <p className="rr-text"> RRR : {rrr} </p>
               </>
             )}
             <p className="rr-text">CRR : {Crr} </p>
@@ -1384,7 +1477,7 @@ const LiveScore = () => {
 
           <div className="bowler-name">
             <span className="dot"></span>
-            <span className="bowler-label">Bowling —&nbsp;</span>
+            <span className="bowler-label">Bowling ;</span>
             {inningInfo.currentBowler?.playername}
           </div>
         </div>
@@ -1421,7 +1514,7 @@ const LiveScore = () => {
             </button>
 
             <button className="undo-btn" onClick={undoBall}>
-              ↩ Undo Last Ball
+              ↩ Undo
             </button>
           </div>
         </div>
@@ -1573,8 +1666,54 @@ const LiveScore = () => {
           </div>
         </div>
       )}
+
+
+
+
+
+      {matchEnd && matchResult && (
+        <div className="match-overlay">
+          <div className="match-card">
+
+            <h2 className="match-title">Match Completed</h2>
+
+            <div className="match-scores">
+
+              <div className="team-box">
+                <h3>{matchResult.firstInning.battingTeamName}</h3>
+                <p className="score">
+                  {matchResult.firstInning.runs}/{matchResult.firstInning.wickets}
+                </p>
+                <p className="overs">{matchResult.firstInning.overs} Overs</p>
+              </div>
+
+              <div className="vs">VS</div>
+
+              <div className="team-box">
+                <h3>{matchResult.secondInning.battingTeamName}</h3>
+                <p className="score">
+                  {matchResult.secondInning.runs}/{matchResult.secondInning.wickets}
+                </p>
+                <p className="overs">{matchResult.secondInning.overs} Overs</p>
+              </div>
+
+            </div>
+
+            <div className="winner-box">
+             
+              <p>{matchResult.resultDescription}</p>
+            </div>
+
+            <button onClick={() => navigate("/")} className="cricit-btn-primary">
+              Back to Home
+            </button>
+
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default LiveScore;
+

@@ -1,0 +1,370 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   PLAYER HISTORY PAGE - Match History Table
+   Design System: Warm Cream + Orange Theme
+   ═════════════════════════════════════════════════════════════════════════ */
+
+/* ─── PAGE CONTAINER ─── */
+.player-history-page {
+  background: var(--bg);
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ─── BACK BUTTON ─── */
+.player-history-back {
+  padding: 0.6rem 1.2rem;
+  margin-bottom: 1.5rem;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1.5px solid var(--border);
+  color: var(--orange);
+  font-size: 0.875rem;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: 'Lato', sans-serif;
+}
+
+.player-history-back:hover {
+  background: var(--orange);
+  color: white;
+  box-shadow: 0 4px 12px var(--orange-glow);
+  border-color: var(--orange);
+}
+
+.player-history-back:active {
+  transform: scale(0.98);
+}
+
+/* ─── TITLE ─── */
+.player-history-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.player-history-title span {
+  font-size: 2.25rem;
+}
+
+/* ─── TABLE CONTAINER ─── */
+.player-history-container {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.player-history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Lato', sans-serif;
+}
+
+/* ─── TABLE HEADER ─── */
+.player-history-table thead {
+  background: linear-gradient(135deg, #292524 0%, #1c1917 100%);
+  border-bottom: 1.5px solid var(--border);
+}
+
+.player-history-table th {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--orange-lt);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-right: 1px solid var(--border);
+}
+
+.player-history-table th:last-child {
+  border-right: none;
+}
+
+/* ─── TABLE BODY ─── */
+.player-history-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s ease;
+}
+
+.player-history-table tbody tr:hover {
+  background: rgba(249, 115, 22, 0.05);
+}
+
+.player-history-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.player-history-table td {
+  padding: 0.95rem 1.25rem;
+  font-size: 0.95rem;
+  color: var(--white);
+  font-weight: 500;
+  border-right: 1px solid var(--border);
+}
+
+.player-history-table td:last-child {
+  border-right: none;
+}
+
+/* ─── TABLE CELL VARIANTS ─── */
+.player-history-match-date {
+  color: var(--orange-lt);
+  font-weight: 600;
+}
+
+.player-history-runs {
+  color: var(--teal);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.player-history-balls {
+  color: var(--muted-lt);
+}
+
+.player-history-fours {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.player-history-sixes {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.player-history-wickets {
+  color: var(--red);
+  font-weight: 700;
+}
+
+.player-history-zero {
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+/* ─── EMPTY STATE ─── */
+.player-history-empty {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--muted);
+  font-size: 1.125rem;
+}
+
+.player-history-empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+/* ─── STATS CARD ─── */
+.player-history-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.player-history-stat-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.player-history-stat-card:hover {
+  border-color: var(--orange);
+  box-shadow: 0 4px 16px var(--orange-glow);
+  transform: translateY(-2px);
+}
+
+.player-history-stat-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.player-history-stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--orange-lt);
+}
+
+/* ─── LOADING STATE ─── */
+.player-history-loading {
+  text-align: center;
+  padding: 2rem;
+  color: var(--muted);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.player-history-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--border);
+  border-top: 3px solid var(--orange);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ─── RESPONSIVE DESIGN ─── */
+@media (max-width: 1024px) {
+  .player-history-page {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .player-history-table th,
+  .player-history-table td {
+    padding: 0.85rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .player-history-title {
+    font-size: 1.75rem;
+  }
+
+  .player-history-title span {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .player-history-page {
+    padding: 1rem 0.5rem;
+  }
+
+  .player-history-table {
+    font-size: 0.85rem;
+  }
+
+  .player-history-table th,
+  .player-history-table td {
+    padding: 0.75rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .player-history-table th {
+    font-size: 0.7rem;
+  }
+
+  .player-history-title {
+    font-size: 1.5rem;
+  }
+
+  .player-history-title span {
+    font-size: 1.75rem;
+  }
+
+  .player-history-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .player-history-stat-card {
+    padding: 1rem;
+  }
+
+  .player-history-stat-value {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .player-history-page {
+    padding: 1rem 0.5rem;
+  }
+
+  .player-history-back {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  .player-history-title {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .player-history-title span {
+    font-size: 1.5rem;
+  }
+
+  .player-history-table {
+    font-size: 0.75rem;
+  }
+
+  .player-history-table th {
+    padding: 0.6rem 0.6rem;
+    font-size: 0.65rem;
+  }
+
+  .player-history-table td {
+    padding: 0.6rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  .player-history-table th,
+  .player-history-table td {
+    border-right: none !important;
+  }
+
+  .player-history-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .player-history-stat-card {
+    padding: 0.9rem;
+  }
+
+  .player-history-stat-label {
+    font-size: 0.7rem;
+  }
+
+  .player-history-stat-value {
+    font-size: 1.25rem;
+  }
+}
+
+/* ─── ANIMATION ─── */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.player-history-container {
+  animation: fadeIn 0.3s ease;
+}
