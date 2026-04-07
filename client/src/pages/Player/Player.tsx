@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import '../styles/Player.css'
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 const URL = import.meta.env.VITE_API_URL;
@@ -90,11 +91,11 @@ const Player = () => {
     const data = await response.json();
 
     if (response.ok) {
-      alert("Player Created");
+      toast.success("Player Created");
       setFormData({ playername: "", role: "", tags: "", teamId: "" });
       fetchPlayers();
     } else {
-      alert(data.msg || "Failed");
+      toast.error(data.msg || "Failed to create player");
     }
   };
 
@@ -129,12 +130,12 @@ const Player = () => {
     const data = await response.json();
 
     if (response.ok) {
-      alert("Player Updated");
+      toast.success("Player Updated");
       setEditingPlayer(null);
       setFormData({ playername: "", role: "", tags: "", teamId: "" });
       fetchPlayers();
     } else {
-      alert(data.message || "Update Failed");
+      toast.error(data.message || "Update Failed");
     }
   };
 
@@ -148,7 +149,7 @@ const Player = () => {
     });
 
     if (response.ok) {
-      alert("Player Deleted");
+      toast.success("Player Deleted");
       fetchPlayers();
     }
   };

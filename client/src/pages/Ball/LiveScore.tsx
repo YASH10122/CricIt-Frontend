@@ -5,6 +5,14 @@ import "../styles/LiveScore.css";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+import { toast } from "react-toastify";
+
+
+interface Player {
+  _id: string;
+  playername: string;
+}
+
 const URL = import.meta.env.VITE_API_URL;
 
 const LiveScore = () => {
@@ -32,7 +40,7 @@ const LiveScore = () => {
     newBatsman: "",
   });
 
-
+  const [match, setMatch] = useState<any>({});
 
 
   const [newBowler, setNewBowler] = useState("");
@@ -49,9 +57,7 @@ const LiveScore = () => {
     const scoreRes = await axios.get(`${URL}/api/ball/score/${inningId}`);
     setScore(scoreRes.data);
 
-    const commentryRes = await axios.get(
-      `${URL}/api/ball/commentary/${inningId}`,
-    );
+    const commentryRes = await axios.get(`${URL}/api/ball/commentary/${inningId}`,);
     setCommentry(commentryRes.data);
 
     const overRes = await axios.get(`${URL}/api/ball/overs/${inningId}`);
@@ -74,6 +80,9 @@ const LiveScore = () => {
 
     const historyRes = await axios.get(`${URL}/api/player/history/match/${matchId}`);
     setPlayerStats(historyRes.data);
+
+    const matchRes = await axios.get(`${URL}/api/match/detail/${matchId}`);
+    setMatch(matchRes.data);
   };
 
 
@@ -101,7 +110,7 @@ const LiveScore = () => {
       }
     } catch (err: any) {
       const msg = err?.response?.data?.message ?? "Failed to add ball";
-      alert(msg);
+      toast.error(msg);
       loadData();
     }
   };
@@ -132,7 +141,7 @@ const LiveScore = () => {
 
 
   const changeBowler = async () => {
-    if (!newBowler) return alert("Please select a bowler");
+    if (!newBowler) return toast.error("Please select a bowler");
 
     await axios.put(`${URL}/api/inning/change-bowler/${inningId}`, {
       bowlerId: newBowler,
@@ -175,8 +184,8 @@ const LiveScore = () => {
       setMatchResult(response.data);
       setMatchEnd(true);
     } catch (error) {
+      toast.error("Failed to complete match");
 
-      alert("Failed to complete match");
     }
   }
 
@@ -215,7 +224,24 @@ const LiveScore = () => {
 
   const nonStrikerStats = getPlayerStats(inningInfo.nonStriker?._id);
   const strikerStats = getPlayerStats(inningInfo.striker?._id);
-  //const bowlerStats = getBowlerStats(inningInfo.currentBowler?._id);
+
+
+
+  const getBattingPlayers = () => {
+    if (!match || !inningInfo) return [];
+
+    return inningInfo.battingTeam === match.teamA?._id
+      ? match.playingTeamA
+      : match.playingTeamB;
+  };
+
+  const getBowlingPlayers = () => {
+    if (!match || !inningInfo) return [];
+
+    return inningInfo.bowlingTeam === match.teamA?._id
+      ? match.playingTeamA
+      : match.playingTeamB;
+  };
 
 
   return (
@@ -259,9 +285,7 @@ const LiveScore = () => {
           <p className="player-box-header">At the Crease</p>
 
           <div className={`player-name striker`}>
-            {/* <span className="dot"></span>
-            {inningInfo.striker?.playername}
-            <span className="on-strike">*</span> */}
+
             <span className="dot"></span>
             {inningInfo.striker?.playername}
             <span className="on-strike">*</span>
@@ -272,8 +296,7 @@ const LiveScore = () => {
           </div>
 
           <div className="player-name">
-            {/* <span className="dot"></span> */}
-            {/* {inningInfo.nonStriker?.playername} */}
+
             <span className="dot"></span>
             {inningInfo.nonStriker?.playername}
 
@@ -285,7 +308,7 @@ const LiveScore = () => {
 
           <div className="bowler-name">
             <span className="dot"></span>
-            {/* <span className="bowler-label">Bowling ;</span> */}
+
             {inningInfo.currentBowler?.playername}
 
             <span className="bowler-stats">
@@ -353,14 +376,7 @@ const LiveScore = () => {
 
         <div className="scorecard-box">
           <h3 className="section-title">Scorecard</h3>
-          {/* {inningInfo.batsmen?.map((player: any) => (
-            <div className="scorecard-row" key={player._id}>
-              <span>{player.name}</span>
-              <span>
-                {player.runs} ({player.balls})
-              </span>
-            </div>
-          ))} */}
+
           {scorecard.map((p: any) => (
             <div key={p._id}>
               {p.playerId?.playername} - {p.battingRuns} ({p.battingBalls})
@@ -384,6 +400,7 @@ const LiveScore = () => {
           <div className="popup-card">
             <h3 className="section-title">Wicket Details</h3>
 
+            {/* Wicket Type */}
             <select
               className="select-input"
               onChange={(e) =>
@@ -406,6 +423,7 @@ const LiveScore = () => {
               ))}
             </select>
 
+            {/* Out Player */}
             <select
               className="select-input"
               onChange={(e) =>
@@ -413,11 +431,13 @@ const LiveScore = () => {
               }
             >
               <option value="">Select Out Player</option>
+
               {inningInfo.striker && (
                 <option value={inningInfo.striker._id}>
                   {inningInfo.striker.playername}
                 </option>
               )}
+
               {inningInfo.nonStriker && (
                 <option value={inningInfo.nonStriker._id}>
                   {inningInfo.nonStriker.playername}
@@ -425,6 +445,7 @@ const LiveScore = () => {
               )}
             </select>
 
+            {/* New Batsman */}
             <select
               className="select-input"
               onChange={(e) =>
@@ -432,13 +453,12 @@ const LiveScore = () => {
               }
             >
               <option value="">Select New Batsman</option>
-              {players
-                .filter((p) => p.teamId?._id === inningInfo.battingTeam)
-                .map((p) => (
-                  <option key={p._id} value={p._id}>
-                    {p.playername}
-                  </option>
-                ))}
+
+              {getBattingPlayers().map((p: Player) => (
+                <option key={p._id} value={p._id}>
+                  {p.playername}
+                </option>
+              ))}
             </select>
 
             <button className="confirm-btn" onClick={confirmWicket}>
@@ -452,6 +472,7 @@ const LiveScore = () => {
         <div className="popup-box">
           <div className="popup-card">
             <h3 className="section-title">Over Complete!</h3>
+
             <p
               style={{
                 color: "var(--muted)",
@@ -468,13 +489,12 @@ const LiveScore = () => {
               value={newBowler}
             >
               <option value="">Select Bowler</option>
-              {players
-                .filter((p) => p.teamId?._id === inningInfo.bowlingTeam)
-                .map((p) => (
-                  <option key={p._id} value={p._id}>
-                    {p.playername}
-                  </option>
-                ))}
+
+              {getBowlingPlayers().map((p: Player) => (
+                <option key={p._id} value={p._id}>
+                  {p.playername}
+                </option>
+              ))}
             </select>
 
             <button className="confirm-btn" onClick={changeBowler}>
@@ -483,10 +503,6 @@ const LiveScore = () => {
           </div>
         </div>
       )}
-
-
-
-
 
       {matchEnd && matchResult && (
         <div className="match-overlay">

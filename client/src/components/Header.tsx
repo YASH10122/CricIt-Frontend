@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import './Style/Header.css'
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { toast } from "react-toastify";
+
 
 const URL = import.meta.env.VITE_API_URL;
 
@@ -28,7 +30,7 @@ const Header = () => {
       setIsLogedIn(false);
       navigate('/login');
     } catch (error) {
-      console.error('Logout error:', error);
+      toast.error('Logout error:'+ error);
     }
   };
 

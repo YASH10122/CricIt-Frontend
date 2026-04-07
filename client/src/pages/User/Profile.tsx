@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 const URL = import.meta.env.VITE_API_URL;
 import '../styles/Profile.css'
+import { toast } from "react-toastify";
+
 
 interface User {
   _id: string;
@@ -27,7 +29,9 @@ const Profile = () => {
         if (res.ok) {
           setUser(data.user);
         }
-      } catch (error) {}
+      } catch (error) {
+        toast.error("Error fetching user data: " + error);
+      }
     };
   
     useEffect(() => {

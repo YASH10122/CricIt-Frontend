@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+
 
 import '../styles/AllMatch.css'
+
 
 interface Match {
   _id: string;
@@ -29,7 +32,7 @@ const MatchDetailPage = () => {
       setLoading(false);
 
     } catch (error) {
-      console.log(error);
+      toast.error("Error loading matches");
       setLoading(false);
     }
   };

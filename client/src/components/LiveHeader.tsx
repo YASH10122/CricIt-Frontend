@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Style/LiveHeader.css";
+import { toast } from "react-toastify";
+
 
 const URL = import.meta.env.VITE_API_URL;
 
@@ -46,7 +48,8 @@ const LiveHeader = () => {
 
       setLiveMatches(finalData);
     } catch (error) {
-      console.log(error);
+      toast.error("Error fetching live matches: " + error);
+      
     }
   };
 

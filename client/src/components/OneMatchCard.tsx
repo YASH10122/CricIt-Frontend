@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import './Style/OneMatchCard.css';
 
+
 interface Team {
   _id: string;
   teamname: string;

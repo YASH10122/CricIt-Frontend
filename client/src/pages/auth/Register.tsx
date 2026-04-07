@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 const URL = import.meta.env.VITE_API_URL;
 import '../styles/Register.css'
+import { toast } from "react-toastify";
+
 
 
 const Register = () => {
@@ -30,14 +32,15 @@ const navigate = useNavigate();
       })
       const data = await response.json()
       if (response.ok) {
-        alert("Registration successful!");
+        toast.success("Registration successful!");
+        
         setFormData({ username: "", email: "", age: "", phone: "", password: "", city: "" })
         navigate('/login');
       } else {
-        alert(data.msg || "Registration failed")
+        toast.error(data.msg || "Registration failed");
       }
     } catch (error) {
-      alert("Error: " + error)
+      toast.error("Error: " + error)
     }
   }
 

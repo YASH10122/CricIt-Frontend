@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../styles/Startinning.css";
+import { toast } from "react-toastify";
+
+
 
 const URL = import.meta.env.VITE_API_URL;
 
@@ -102,8 +105,8 @@ const StartInning = () => {
 
      
     } catch (error) {
-      console.error("Error loading match:", error);
-      alert("Error loading match data");
+      
+        toast.error("Error loading match data");
       
     }
   };
@@ -116,19 +119,19 @@ const StartInning = () => {
     e.preventDefault();
 
     if (!formData.striker) {
-      alert(" select a striker");
+      toast.error("select a striker");
       return;
     }
     if (!formData.nonStriker) {
-      alert(" select a non-striker");
+      toast.error(" select a non-striker");
       return;
     }
     if (!formData.currentBowler) {
-      alert(" select a bowler");
+      toast.error("select a bowler");
       return;
     }
     if (formData.striker === formData.nonStriker) {
-      alert("Striker and Non-Striker must be different players");
+      toast.error("Striker and Non-Striker must be different players");
       return;
     }
 
@@ -146,16 +149,16 @@ const StartInning = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        alert(data.message || "Failed to start inning");
+        toast.error(data.message || "Failed to start inning");
         return;
       }
 
-      alert("Inning started successfully!");
+      toast.success("Inning started successfully!");
       const inningId = data.inning._id;
       navigate(`/live-score/${matchId}/${inningId}`);
     } catch (error) {
-      console.error("Error:", error);
-      alert("Error starting inning");
+      
+      toast.error("Error starting inning");
     }
   };
 

@@ -1,6 +1,8 @@
 import  { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import '../styles/PlayingTeam.css'
+import { toast } from "react-toastify";
+
 
 const URL = import.meta.env.VITE_API_URL;
 
@@ -78,14 +80,14 @@ const PlayingTeamPage = () => {
       if (selectedA.includes(playerId)) {
         setSelectedA(selectedA.filter((id) => id !== playerId));
       } else {
-        if (selectedA.length >= 11) return alert("Only 11 players allowed");
+        if (selectedA.length >= 11) return toast.error("Only 11 players allowed");
         setSelectedA([...selectedA, playerId]);
       }
     } else {
       if (selectedB.includes(playerId)) {
         setSelectedB(selectedB.filter((id) => id !== playerId));
       } else {
-        if (selectedB.length >= 11) return alert("Only 11 players allowed");
+        if (selectedB.length >= 11) return toast.error("Only 11 players allowed");
         setSelectedB([...selectedB, playerId]);
       }
     }
@@ -112,11 +114,11 @@ const submitPlayingTeam = async () => {
   console.log(data);
 
   if (!res.ok) {
-    alert(data.message || "Error selecting team");
+    toast.error(data.message || "Error selecting team");
     return;
   }
 
-  alert("Playing Team Selwected...");
+  toast.success("Playing Team Selected...");
   navigate(`/toss/${matchId}`);
 };
 

@@ -21,9 +21,12 @@ import SecondInningSetup from "./pages/Inning/SecondInning";
 import MatchDetails from "./pages/MatchDetails";
 import PlayerHistory from "./pages/Player/PlayerHistory";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <BrowserRouter>
+     <ToastContainer position="top-right" autoClose={3000} />
       <Header />
       <LiveHeader />
       <Routes>

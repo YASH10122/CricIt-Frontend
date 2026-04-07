@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../styles/CreateMatch.css'
+import { toast } from "react-toastify";
+
 
 
 const URL = import.meta.env.VITE_API_URL;
@@ -63,7 +65,7 @@ const CreateMatch = () => {
     const data = await responce.json();
 
     if (responce.ok) {
-      alert("match Created");
+      toast.success("Match created successfully!");
       setFormData({
         teamA: "",
         teamB: "",
@@ -74,7 +76,7 @@ const CreateMatch = () => {
       });
       navigate(`/playing-team/${data.match._id}`)
     } else {
-      alert(data.msg || "Failed");
+      toast.error(data.msg || "Failed to create match");
     }
   };
 

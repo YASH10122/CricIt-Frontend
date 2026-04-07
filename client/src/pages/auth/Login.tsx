@@ -2,6 +2,8 @@ import { useState } from 'react';
 const URL = import.meta.env.VITE_API_URL;
 import { useNavigate } from 'react-router-dom'
 import '../styles/Login.css'
+import { toast } from "react-toastify";
+
 
 const Login = () => {
 
@@ -26,16 +28,16 @@ const Login = () => {
       
       if(response.ok){
         localStorage.setItem('token', data.token)
-        alert("Login successful!")
+        toast.success("Login successful!")
         setFormData({ email: "", password: "" })
        navigate("/")
       } else {
-        alert(data.msg ||"Login failed")
+        toast.error(data.msg ||"Login failed")
       }
      
     } catch (error) {
-      console.error('Login error:', error)
-      alert("Error: " + error)
+      
+      toast.error("Error: " + error)
     }
   }
 

@@ -4,6 +4,8 @@
   const URL = import.meta.env.VITE_API_URL;
   import '../styles/Toss.css'
 import Coin from  '../../components/Coin'
+import { toast } from "react-toastify";
+
 
 
   interface Match {
@@ -65,7 +67,7 @@ import Coin from  '../../components/Coin'
 
       if (!reasponce.ok) {
         
-      alert(data.message || "Error");
+      toast.error(data.message || "Error");
       return;
     }
 

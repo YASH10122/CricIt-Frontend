@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../styles/PlayerHistory.css";
+import { toast } from "react-toastify";
 
 const URL = import.meta.env.VITE_API_URL;
 
@@ -18,7 +19,7 @@ const PlayerHistory = () => {
         setLoading(false);
       })
       .catch((err) => {
-        console.error(err);
+        toast.error("Error fetching player history" + err.message);
         setLoading(false);
       });
   }, [playerId]);

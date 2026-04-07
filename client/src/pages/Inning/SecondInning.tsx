@@ -2,6 +2,8 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "../styles/Startinning.css"
+import { toast } from "react-toastify";
+
 
 const URL = import.meta.env.VITE_API_URL;
 
@@ -44,7 +46,7 @@ const SecondInningSetup = () => {
         setBowlingPlayers(match.playingTeamA);
       }
     } catch (err) {
-      alert("Error loading players");
+      toast.error("Error loading players");
     }
   };
 

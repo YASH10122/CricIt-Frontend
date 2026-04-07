@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 
+
 const URL = import.meta.env.VITE_API_URL;
 
 const MatchDetails = () => {
@@ -274,12 +275,12 @@ const MatchDetails = () => {
                       {p.playername}
                     </span>
 
-                    {/* 🟢 BATTING */}
+                    
                     <span className="player-batting">
                       {runs} ({balls}) | SR: {strikeRate}
                     </span>
 
-                    {/* 🔵 BOWLING */}
+                   
                     <span className="player-bowling">
                       {overs} ov | {runsGiven} R | {wickets} W
                     </span>

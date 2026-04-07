@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles/Home.css";
+import { toast } from "react-toastify";
+
 
 const URL = import.meta.env.VITE_API_URL;
 
@@ -66,12 +68,13 @@ const Home = () => {
       });
       const data = await res.json();
       if (!res.ok) {
-        alert(data.message || "Error fetching details");
+        toast.error(data.message || "Error fetching details");
         return;
       }
       navigate(`/match-details/${matchId}`, { state: data });
     } catch (error) {
-      console.log(error);
+        toast.error("Error fetching details: " + error);
+      
     }
   };
 

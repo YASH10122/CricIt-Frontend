@@ -1,5 +1,6 @@
 import { useState } from "react";
 const URL = import.meta.env.VITE_API_URL;
+import { toast } from "react-toastify";
 
 import '../styles/CreateTeam.css';
 
@@ -27,12 +28,12 @@ const CreateTeam = () => {
 
       if (responce.ok) {
         setTeamname("");
-        alert("team created successfully");
+        toast.success("Team created successfully");
       } else {
-        alert(data.msg || "failed to create team &  login first");
+        toast.error(data.msg || "Failed to create team. Please login first.");
       }
     } catch (error) {
-      alert(`error: ${error}`);
+      toast.error(`Error: ${error}`);
     }
   };
 

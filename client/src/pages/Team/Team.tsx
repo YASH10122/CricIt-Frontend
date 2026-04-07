@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import CreateTeam from "./CreateTeam";
 const URL = import.meta.env.VITE_API_URL;
+import { toast } from "react-toastify";
 
 import '../styles/Team.css'
 
@@ -39,10 +40,10 @@ const Team = () => {
         setTeams(data);
         //navigate("/player")
       } else {
-        alert(data.msg || "Failed to fetch teams");
+        toast.error(data.msg || "Failed to fetch teams");
       }
     } catch (error) {
-      alert("Error: " + error);
+      toast.error("Error: " + error);
     }
   };
 
@@ -58,14 +59,14 @@ const Team = () => {
       });
 
       if (response.ok) {
-        alert("Team deleted successfully!");
+        toast.success("Team deleted successfully!");
         fetchTeams();
       } else {
         const data = await response.json();
-        alert(data.msg || "Failed to delete ");
+        toast.error(data.msg || "Failed to delete team");
       }
     } catch (error) {
-      alert("Error: " + error);
+      toast.error("Error: " + error);
     }
   };
 
