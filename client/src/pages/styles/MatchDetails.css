@@ -1070,3 +1070,171 @@ p {
     font-size: 12px;
   }
 }
+
+
+/* ─── OVER BOX ─── */
+.over-box {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.over-box h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.over-balls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.over-balls span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: var(--color-accent);
+  color: white;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.over-balls span:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
+}
+
+/* ─── COMMENTARY BOX ─── */
+.commentary-box {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.commentary-box h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.commentary-box p {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin: 8px 0;
+  line-height: 1.5;
+  padding-left: 8px;
+  border-left: 3px solid var(--color-accent);
+}
+
+.commentary-box p:first-of-type {
+  margin-top: 0;
+}
+
+.commentary-box p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* ─── SCROLLBAR STYLING FOR COMMENTARY ─── */
+.commentary-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+.commentary-box::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.commentary-box::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 3px;
+}
+
+.commentary-box::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-dark, #ea580c);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .over-box {
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+
+  .over-balls {
+    gap: 6px;
+  }
+
+  .over-balls span {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .commentary-box {
+    padding: 12px;
+    margin-bottom: 16px;
+    max-height: 250px;
+  }
+
+  .commentary-box p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .over-balls {
+    gap: 5px;
+  }
+
+  .over-balls span {
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
+  }
+
+  .commentary-box {
+    max-height: 200px;
+  }
+}
+
+/* ─── LIVE INFO CONTAINER (Top Section Layout) ─── */
+.live-info-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* Stack on smaller screens */
+@media (max-width: 768px) {
+  .live-info-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .live-info-container {
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+}

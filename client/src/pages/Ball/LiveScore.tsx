@@ -301,7 +301,7 @@ const LiveScore = () => {
             {inningInfo.nonStriker?.playername}
 
             <span style={{ marginLeft: "8px", color: "#aaa" }}>
-              {nonStrikerStats?.runsConceded || 0} ({nonStrikerStats?.battingBalls || 0})
+              {nonStrikerStats?.battingRuns || 0} ({nonStrikerStats?.battingBalls || 0})
             </span>
 
           </div>
