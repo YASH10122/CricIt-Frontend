@@ -378,8 +378,11 @@ const LiveScore = () => {
           <h3 className="section-title">Scorecard</h3>
 
           {scorecard.map((p: any) => (
-            <div key={p._id}>
+            <div className="scorecard-item" key={p._id}>
               {p.playerId?.playername} - {p.battingRuns} ({p.battingBalls})
+              
+              
+            
             </div>
           ))}
         </div>

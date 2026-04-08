@@ -332,6 +332,15 @@
   margin-bottom: 16px;
 }
 
+.scorecard-item {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted-lt);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+
 .over-balls { display: flex; gap: 10px; flex-wrap: wrap; }
 
 .ball-item {

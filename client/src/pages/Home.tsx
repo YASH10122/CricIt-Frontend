@@ -111,7 +111,7 @@ const Home = () => {
     <div className="home-page">
       <div className="home-header">
         <h2 className="home-title">
-          <span>🏏</span> Matches 
+           Matches 
         </h2>
 
         <div className="filter-bar">
