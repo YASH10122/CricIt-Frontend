@@ -57,12 +57,12 @@ const Home = () => {
     if (res.ok) setMatches(data);
   };
 
-  // ✅ INITIAL LOAD
+  //  INITIAL LOAD
   useEffect(() => {
     fetchMatches();
   }, []);
 
-  // ✅ SOCKET (FIXED POSITION)
+  //  SOCKET 
   useEffect(() => {
     socket.on("scoreUpdate", () => {
       fetchMatches();
@@ -93,7 +93,7 @@ const Home = () => {
   const filteredMatches =
     filter === "all" ? matches : matches.filter((m) => m.status === filter);
 
-  // ✅ PURE FUNCTION (NO HOOKS HERE)
+  // PURE FUNCTIOn
   const renderScore = (
     match: Match,
     teamId: string,
