@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import CreateTeam from "./CreateTeam";
-const URL = import.meta.env.VITE_API_URL;
 import { toast } from "react-toastify";
+import "../styles/Team.css";
 
-import '../styles/Team.css'
+const URL = import.meta.env.VITE_API_URL;
 
 interface Team {
   _id: string;
@@ -18,12 +17,9 @@ interface Team {
 
 const Team = () => {
   const [teams, setTeams] = useState<Team[]>([]);
+  const [teamname, setTeamname] = useState("");
 
-
-  //const navigate = useNavigate();
-
-
-
+  // ✅ Fetch Teams
   const fetchTeams = async () => {
     const token = localStorage.getItem("token");
 
@@ -38,7 +34,6 @@ const Team = () => {
 
       if (response.ok) {
         setTeams(data);
-        //navigate("/player")
       } else {
         toast.error(data.msg || "Failed to fetch teams");
       }
@@ -47,6 +42,43 @@ const Team = () => {
     }
   };
 
+  // ✅ Create Team
+  const handleCreateTeam = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!teamname.trim()) {
+      return toast.error("Team name is required");
+    }
+
+    const token = localStorage.getItem("token");
+
+    try {
+      const response = await fetch(`${URL}/api/team/create`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ teamname }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setTeamname("");
+        toast.success("Team created successfully");
+
+        // 🔥 IMPORTANT: refresh list
+        fetchTeams();
+      } else {
+        toast.error(data.msg || "Failed to create team");
+      }
+    } catch (error) {
+      toast.error(`Error: ${error}`);
+    }
+  };
+
+  // ✅ Delete Team
   const handleDelete = async (teamId: string) => {
     const token = localStorage.getItem("token");
 
@@ -77,50 +109,70 @@ const Team = () => {
   return (
     <div className="team-page">
 
-  <div className="team-create">
-    <CreateTeam />
-  </div>
+      {/* ✅ CREATE TEAM */}
+      <div className="create-team-card">
+        <h2 className="create-team-title">Create Team</h2>
 
-  {/* <div className="team-next">
-    <Link to="/player" className="next-btn">Next</Link>
-  </div> */}
+        <form className="create-team-form" onSubmit={handleCreateTeam}>
+          <div className="form-group">
+            <label>Enter Team Name</label>
+            <input
+              type="text"
+              placeholder="Team Name"
+              value={teamname}
+              onChange={(e) => setTeamname(e.target.value)}
+            />
+          </div>
 
-  <div className="team-list-card">
-    <h2 className="team-title">Team List</h2>
+          <button className="add-team-btn" type="submit">
+            Add Team
+          </button>
+        </form>
+      </div>
 
-    <div className="table-wrapper">
-      <table className="team-table">
-        <thead>
-          <tr>
-            <th>Team Name</th>
-            <th>Created By</th>
-            <th>Action</th>
-          </tr>
-        </thead>
+      {/* ✅ TEAM LIST */}
+      <div className="team-list-card">
+        <h2 className="team-title">Team List</h2>
 
-        <tbody>
-          {teams.map((team) => (
-            <tr key={team._id}>
-              <td>{team.teamname}</td>
-              <td>{team.createdBy.username}</td>
-              <td>
-                <button
-                  className="delete-btn"
-                  onClick={() => handleDelete(team._id)}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
+        <div className="table-wrapper">
+          <table className="team-table">
+            <thead>
+              <tr>
+                <th>Team Name</th>
+                <th>Created By</th>
+                <th>Action</th>
+              </tr>
+            </thead>
 
-      </table>
+            <tbody>
+              {teams.length === 0 ? (
+                <tr>
+                  <td colSpan={3} style={{ textAlign: "center" }}>
+                    No teams found
+                  </td>
+                </tr>
+              ) : (
+                teams.map((team) => (
+                  <tr key={team._id}>
+                    <td>{team.teamname}</td>
+                    <td>{team.createdBy.username}</td>
+                    <td>
+                      <button
+                        className="delete-btn"
+                        onClick={() => handleDelete(team._id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
-
-  </div>
-
-</div>
   );
 };
 
