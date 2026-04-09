@@ -18,7 +18,7 @@ const Header = () => {
 
   useEffect(() => {
     setIsLogedIn(!!token);
-  }, []);
+  }, [token]);
 
   const handleLogout = async () => {
     try {

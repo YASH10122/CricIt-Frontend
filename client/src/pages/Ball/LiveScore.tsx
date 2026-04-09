@@ -47,10 +47,10 @@ const LiveScore = () => {
 
 
 
-  const [scorecard, setScorecard] = useState([]);
+  const [scorecard, setScorecard] = useState<any[]>([]);
 
 
-  const [playerStats, setPlayerStats] = useState<any[]>([]);
+ 
 
 
   const loadData = async () => {
@@ -77,9 +77,6 @@ const LiveScore = () => {
     const scorecardRes = await axios.get(`${URL}/api/player/history/match/${matchId}`);
     setScorecard(scorecardRes.data);
 
-
-    const historyRes = await axios.get(`${URL}/api/player/history/match/${matchId}`);
-    setPlayerStats(historyRes.data);
 
     const matchRes = await axios.get(`${URL}/api/match/detail/${matchId}`);
     setMatch(matchRes.data);
@@ -204,13 +201,13 @@ const LiveScore = () => {
 
 
   const getPlayerStats = (playerId: string) => {
-    return playerStats.find(
+    return scorecard.find(
       (p: any) => p.playerId?._id === playerId
     );
   };
 
   const getBowlerStats = (playerId: string) => {
-    return playerStats.find(
+    return scorecard.find(
       (p: any) => p.playerId?._id === playerId
     );
   };
@@ -374,7 +371,7 @@ const LiveScore = () => {
           </div>
         </div>
 
-        <div className="scorecard-box">
+        {/* <div className="scorecard-box">
           <h3 className="section-title">Scorecard</h3>
 
           {scorecard.map((p: any) => (
@@ -385,7 +382,7 @@ const LiveScore = () => {
             
             </div>
           ))}
-        </div>
+        </div> */}
 
         <div className="commentry-box">
           <h3 className="section-title">Commentary</h3>

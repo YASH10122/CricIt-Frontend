@@ -37,7 +37,7 @@
   flex-wrap: wrap;
 }
 
-.filter-btn {
+.filter-btns {
   padding: 0.75rem 1.25rem;
   background: var(--surface);
   color: var(--white);
@@ -256,18 +256,18 @@
   flex-shrink: 0;
 }
 
-.score-runs {
+.score-runs-home {
   font-size: 2rem;
   font-weight: 800;
-  color: var(--white);
+  color: var(--orange);
   display: flex;
   align-items: baseline;
   gap: 0.20rem;
 }
 
-.score-wickets {
+.score-wickets-home {
   font-size: 1.5rem;
-  color: var(--orange);
+  color: var(--white);
   font-weight: 600;
 }
 

@@ -110,9 +110,9 @@ const Home = () => {
 
     return runs !== undefined ? (
       <div className="team-row__score">
-        <span className="score-runs">
+        <span className="score-runs-home">
           {runs}
-          <span className="score-wickets">/ {wickets}</span>
+          <span className="score-wickets-home">/ {wickets}</span>
         </span>
         <span className="score-overs">({overs} overs)</span>
       </div>
@@ -130,7 +130,7 @@ const Home = () => {
           {["all", "upcoming", "live", "finished"].map((f) => (
             <button
               key={f}
-              className={`filter-btn ${
+              className={`filter-btns ${
                 filter === f ? "filter-btn--active" : ""
               }`}
               onClick={() => setFilter(f)}

@@ -1,1240 +1,588 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+/* MatchDetails.css - Standard CSS for CricIt Match Details */
 
 :root {
-  /* Background - warm cream */
-  --bg:          #fdf6ee;
-  --bg2:         #faebd7;
-
-  /* Cards - dark warm stone */
-  --surface:     #1c1917;
-  --surface2:    #292524;
-
-  /* Borders */
-  --border:      #3a3330;
-
-  /* Accent - bright orange */
-  --orange:      #f97316;
-  --orange-lt:   #fdba74;
-  --orange-glow: rgba(249,115,22,0.22);
-
-  /* Text */
-  --white:       #fafaf9;
-  --dark:        #1c1917;
-  --muted:       #78716c;
-  --muted-lt:    #a8a29e;
-
-  /* Special */
-  --gold:        #f6c90e;
-  --red:         #ef4444;
-  --teal:        #2dd4bf;
-  --blue:        #60a5fa;
-  --green:       #22c55e;
+  --color-bg: #fdf6ee;
+  --color-bg2: #faebd7;
+  --color-surface: #1c1917;
+  --color-surface2: #292524;
+  --color-border: #3a3330;
+  --color-orange: #f97316;
+  --color-orange-lt: #fdba74;
+  --color-orange-glow: rgba(249,115,22,0.22);
+  --color-white: #fafaf9;
+  --color-dark: #1c1917;
+  --color-muted: #78716c;
+  --color-muted-lt: #a8a29e;
+  --color-gold: #f6c90e;
+  --color-red: #ef4444;
+  --color-teal: #2dd4bf;
+  --color-blue: #60a5fa;
+  --font-lato: 'Lato', sans-serif;
 }
-
-/* ═══════════════════════════════════════════════════════════════ */
-/* BASE & TYPOGRAPHY                                               */
-/* ═══════════════════════════════════════════════════════════════ */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--bg);
-  background-image:
-    radial-gradient(ellipse 55% 35% at 85% 8%,  rgba(249,115,22,0.07) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 25% at 8%  92%,  rgba(249,115,22,0.05) 0%, transparent 55%);
-  color: var(--dark);
-  font-family: 'Lato', sans-serif;
-  min-height: 100vh;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Lato', sans-serif;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-p {
-  margin: 0;
-}
-
-::-webkit-scrollbar {
-  width: 5px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg2);
-}
-
-::-webkit-scrollbar-thumb {
-  background: #d6cfc8;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #c6bfb8;
-}
-
-/* ═══════════════════════════════════════════════════════════════ */
-/* DETAILS PAGE LAYOUT                                              */
-/* ═══════════════════════════════════════════════════════════════ */
 
 .details-page {
-  width: 100%;
-  max-width: 1024px;
-  margin: 0 auto;
-  padding: 24px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  max-width: 64rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
 }
 
-/* ─── Back Button ─── */
+@media (min-width: 768px) {
+  .details-page {
+    padding: 2rem;
+  }
+}
+
 .back-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  background: var(--surface2);
-  color: var(--white);
-  border: 1.5px solid var(--border);
+  margin-bottom: 1.5rem;
+  color: var(--color-muted);
+  background: transparent;
+  border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: 'Lato', sans-serif;
-  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  transition: color 0.2s;
 }
 
 .back-btn:hover {
-  background: var(--surface);
-  border-color: var(--orange);
-  color: var(--orange);
-  transform: translateX(-2px);
+  color: var(--color-orange);
 }
 
-.back-btn:active {
-  transform: translateX(-1px);
-}
-
-/* ─── Error State ─── */
-.details-error {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  padding: 64px 16px;
-}
-
-.details-error p {
-  font-size: 18px;
-  color: #666;
-  font-weight: 500;
-}
-
-/* ═══════════════════════════════════════════════════════════════ */
-/* TITLE & META                                                     */
-/* ═══════════════════════════════════════════════════════════════ */
-
-.details-title-block {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.details-title {
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--dark);
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  word-spacing: 0.1em;
-}
-
-.details-vs {
-  font-size: 20px;
-  font-weight: 600;
-  padding: 6px 12px;
-  border-radius: 8px;
-  background: var(--orange-glow);
-  color: var(--orange);
-}
-
-.details-meta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-/* ─── Badges ─── */
-.badge {
-  display: inline-block;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: white;
-}
-
-.badge--type {
-  background: var(--blue);
-}
-
-.badge--completed {
-  background: var(--orange);
-}
-
-.badge--ongoing {
-  background: var(--green);
-}
-
-.badge--scheduled {
-  background: #eab308;
-}
-
-.badge--status {
-  padding: 4px 10px;
-  font-size: 10px;
-}
-
-/* ═══════════════════════════════════════════════════════════════ */
-/* CARDS & CONTAINERS                                               */
-/* ═══════════════════════════════════════════════════════════════ */
-
-.details-card {
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 20px;
-  transition: all 0.2s ease;
-}
-
-.details-card:hover {
-  border-color: var(--orange-lt);
-  box-shadow: 0 8px 32px rgba(249,115,22,0.1);
-}
-
-/* ─── Info Grid (Toss Winner, Match Winner) ─── */
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-
-.info-item {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.info-label {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-}
-
-.info-value {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--white);
-}
-
-.info-value--winner {
-  color: var(--orange);
-}
-
-/* ═══════════════════════════════════════════════════════════════ */
-/* SCORES ROW                                                       */
-/* ═══════════════════════════════════════════════════════════════ */
-
-.scores-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 16px;
-}
-
-.score-card {
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 24px;
-  text-align: center;
+/* Match Hero Section */
+.match-hero {
+  background-color: var(--color-surface);
+  color: var(--color-white);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   position: relative;
-  transition: all 0.2s ease;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  background-image: radial-gradient(circle at top right, rgba(249,115,22,0.15), transparent);
 }
 
-.score-card:hover {
-  border-color: var(--orange-lt);
+@media (min-width: 768px) {
+  .match-hero {
+    padding: 2.5rem;
+  }
 }
 
-.score-card--winner {
-  border-color: var(--orange);
-  box-shadow: 0 0 24px var(--orange-glow);
-}
-
-.score-card__winner-tag {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 700;
-  background: var(--orange);
-  color: white;
-}
-
-.score-card__team {
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--muted-lt);
-  margin-bottom: 8px;
-}
-
-.score-card__runs {
-  font-size: 48px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: var(--white);
-}
-
-.score-card__wickets {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--orange);
-  margin-left: 4px;
-}
-
-.score-card__overs {
-  font-size: 12px;
-  color: var(--muted);
-}
-
-/* ═══════════════════════════════════════════════════════════════ */
-/* INNINGS SECTION                                                  */
-/* ═══════════════════════════════════════════════════════════════ */
-
-.innings-section {
+.match-meta {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
 }
 
-.section-title {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--orange);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
-}
-
-.innings-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 16px;
-}
-
-.innings-card {
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 20px;
-  transition: all 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  min-height: 180px;
-}
-
-.innings-card:hover {
-  border-color: var(--orange-lt);
-}
-
-/* ─── Innings Header ─── */
-.innings-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 8px;
-}
-
-.innings-label {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--white);
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.innings-label strong {
-  font-weight: 700;
-  color: var(--white);
-  font-size: 13px;
-}
-
-.innings-label-sub {
-  font-size: 12px;
-  color: var(--muted-lt);
-  font-weight: 500;
-}
-
-/* ─── Section Divider ─── */
-.section-divider {
-  height: 1px;
-  background: linear-gradient(to right, var(--border), transparent);
-  margin: 16px 0;
-  border: none;
-  display: none;
-}
-
-.innings-card .section-divider {
-  display: none;
-}
-
-/* ─── Innings Score ─── */
-.innings-score-row {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  margin-bottom: 12px;
-  margin-top: auto;
-}
-
-.innings-runs {
-  font-size: 36px;
-  font-weight: 700;
-  color: var(--white);
-  line-height: 1;
-}
-
-.innings-wickets {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--orange);
-  margin-left: 4px;
-}
-
-.innings-overs {
-  font-size: 12px;
-  color: var(--muted-lt);
-  margin-left: 8px;
-}
-
-/* ─── Innings Extras ─── */
-.innings-extras {
-  font-size: 13px;
-  padding: 8px 12px;
-  border-radius: 8px;
-  margin-bottom: 12px;
-  background: rgba(249,115,22,0.1);
-  color: var(--orange);
-  border-left: 3px solid var(--orange);
-  display: none;
-}
-
-/* ─── Innings Target ─── */
-.innings-target {
-  font-size: 13px;
-  font-weight: 600;
-  padding: 8px 12px;
-  border-radius: 8px;
-  margin-bottom: 12px;
-  background: rgba(45,212,191,0.1);
-  color: var(--teal);
-  border-left: 3px solid var(--teal);
-  display: none;
-}
-
-.innings-target__need {
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--muted-lt);
-}
-
-/* ─── Live Players ─── */
-.innings-live-info {
-  background: rgba(34,197,94,0.05);
-  border: 1.5px solid rgba(34,197,94,0.2);
-  border-radius: 12px;
-  padding: 16px;
-  margin-top: 16px;
-  display: none;
-}
-
-.innings-live-title {
-  font-size: 13px;
-  font-weight: 700;
-  margin-bottom: 12px;
-  color: var(--green);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.live-players-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 12px;
-}
-
-.live-player {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 12px;
-  border-radius: 8px;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  transition: all 0.2s ease;
-}
-
-.live-player:hover {
-  border-color: var(--orange);
-  background: rgba(249,115,22,0.05);
-}
-
-.live-player__icon {
-  font-size: 24px;
-}
-
-.live-player__name {
-  font-size: 13px;
-  font-weight: 700;
-  text-align: center;
-  color: var(--white);
-  word-break: break-word;
-}
-
-.live-player__role {
+.meta-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
   font-size: 10px;
-  text-transform: uppercase;
+  font-weight: 700;
   letter-spacing: 0.05em;
-  color: var(--muted);
+  background-color: var(--color-surface2);
+  border: 1px solid var(--color-border);
 }
 
-/* ═══════════════════════════════════════════════════════════════ */
-/* TEAM FILTER TABS                                                 */
-/* ═══════════════════════════════════════════════════════════════ */
-
-.team-filter-tabs {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 32px;
-  margin-bottom: 24px;
+.meta-badge--live {
+  color: var(--color-red);
+  border-color: rgba(239, 68, 68, 0.3);
+  background-color: rgba(239, 68, 68, 0.1);
 }
 
-.filter-tab {
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  background: var(--surface2);
-  color: var(--muted-lt);
-  border: 1.5px solid var(--border);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: 'Lato', sans-serif;
+.match-title-hero {
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-bottom: 2rem;
+  letter-spacing: -0.025em;
 }
 
-.filter-tab:hover {
-  border-color: var(--orange);
-  color: var(--orange);
+@media (min-width: 768px) {
+  .match-title-hero {
+    font-size: 2.25rem;
+  }
 }
 
-.filter-tab--active {
-  background: var(--orange);
-  color: white;
-  border-color: var(--orange);
-  box-shadow: 0 4px 16px var(--orange-glow);
-}
-
-/* ═══════════════════════════════════════════════════════════════ */
-/* PLAYERS GRID & ROWS                                              */
-/* ═══════════════════════════════════════════════════════════════ */
-
-.players-grid {
+.score-grid-hero {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
+  gap: 1.5rem;
 }
 
-.players-grid .details-card {
-  background: var(--surface);
-  border: 1.5px solid var(--border);
+@media (min-width: 768px) {
+  .score-grid-hero {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
 }
 
-.players-empty {
-  text-align: center;
-  padding: 32px 16px;
-  font-size: 13px;
-  color: var(--muted);
+.score-box-hero {
+  display: flex;
+  flex-direction: column;
 }
 
-/* ─── Player Row ─── */
-.player-row {
-  display: grid;
-  grid-template-columns: 40px 1fr 1fr 1fr;
-  gap: 12px;
-  align-items: center;
-  padding: 12px 8px;
-  border-bottom: 1px solid var(--border);
+.score-label {
+  color: var(--color-muted-lt);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.score-display {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.score-runs {
+  font-size: 2.25rem;
+  font-weight: 900;
+  color: var(--color-orange);
+}
+
+@media (min-width: 768px) {
+  .score-runs {
+    font-size: 3.75rem;
+  }
+}
+
+.score-slash {
+  font-size: 1.5rem;
+  color: var(--color-muted);
+  font-weight: 300;
+}
+
+@media (min-width: 768px) {
+  .score-slash {
+    font-size: 2.25rem;
+  }
+}
+
+.score-wickets {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+@media (min-width: 768px) {
+  .score-wickets {
+    font-size: 2.25rem;
+  }
+}
+
+.score-overs {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+.winner-badge {
+  margin-top: 2rem;
+  display: inline-block;
+  background-color: var(--color-orange);
+  color: var(--color-surface);
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+/* Tabs Navigation */
+.tabs-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--color-bg2);
+  padding-bottom: 0.5rem;
+  overflow-x: auto;
+}
+
+.tab-button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+  white-space: nowrap;
   background: transparent;
-  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  color: var(--color-muted);
 }
 
-.player-row:last-child {
+.tab-button:hover {
+  color: var(--color-dark);
+  background-color: var(--color-bg2);
+}
+
+.tab-button--active {
+  background-color: var(--color-surface);
+  color: var(--color-white);
+}
+
+.tab-button--active:hover {
+  background-color: var(--color-surface);
+  color: var(--color-white);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Cards */
+.card {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid var(--color-bg2);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.125rem;
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-left: 4px solid var(--color-orange);
+  padding-left: 0.75rem;
+}
+
+/* Live Grid */
+.live-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .live-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.over-balls-large {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.ball-item {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background-color: var(--color-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 0.875rem;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.ball-wicket {
+  background-color: var(--color-red);
+  color: white;
+  box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.2);
+}
+
+.ball-extra {
+  border-color: var(--color-orange);
+  color: var(--color-orange);
+}
+
+.live-players-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.live-player-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  background-color: rgba(253, 246, 238, 0.5);
+  border: 1px solid var(--color-bg2);
+}
+
+.player-role {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  letter-spacing: -0.025em;
+}
+
+.player-name {
+  font-weight: 700;
+  font-size: 0.875rem;
+  flex: 1;
+  margin-left: 0.75rem;
+  color:coral
+}
+
+.player-runs {
+  font-weight: 900;
+  color: var(--color-orange);
+  font-size: 0.875rem;
+}
+
+/* Commentary */
+.commentary-scroll {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.commentary-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-bg2);
+}
+
+.commentary-item:last-child {
   border-bottom: none;
 }
 
-.player-row:hover {
-  background: rgba(249,115,22,0.05);
+.commentary-text {
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: rgba(28, 25, 23, 0.8);
 }
 
-.player-row__num {
-  text-align: center;
-  font-weight: 700;
-  font-size: 12px;
-  color: var(--muted);
-}
-
-.player-row__name {
-  font-weight: 600;
-  font-size: 13px;
-  color: var(--white);
-  word-break: break-word;
-}
-
-.player-batting {
-  font-size: 12px;
-  color: var(--teal);
-  font-family: 'Courier New', monospace;
-}
-
-.player-bowling {
-  font-size: 12px;
-  color: var(--blue);
-  font-family: 'Courier New', monospace;
-}
-
-/* ═══════════════════════════════════════════════════════════════ */
-/* UTILITY CLASSES                                                  */
-/* ═══════════════════════════════════════════════════════════════ */
-
-.text-gradient {
-  background: linear-gradient(135deg, var(--orange), var(--gold));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.glow-orange {
-  box-shadow: 0 0 24px var(--orange-glow);
-}
-
-.fade-in {
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ═══════════════════════════════════════════════════════════════ */
-/* RESPONSIVE DESIGN                                                */
-/* ═══════════════════════════════════════════════════════════════ */
-
-@media (max-width: 1024px) {
-  .details-page {
-    padding: 20px 16px;
-    gap: 20px;
-  }
-
-  .details-title {
-    font-size: 28px;
-    gap: 12px;
-  }
-
-  .details-vs {
-    font-size: 18px;
-    padding: 4px 10px;
-  }
-
-  .info-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .scores-row {
-    grid-template-columns: 1fr;
-  }
-
-  .innings-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-
-  .live-players-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .details-page {
-    padding: 16px 12px;
-    gap: 16px;
-  }
-
-  .details-title {
-    font-size: 22px;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .details-title-block {
-    gap: 10px;
-  }
-
-  .details-vs {
-    font-size: 16px;
-    padding: 4px 8px;
-  }
-
-  .badge {
-    padding: 4px 8px;
-    font-size: 10px;
-  }
-
-  .details-card {
-    padding: 16px;
-    border-radius: 12px;
-  }
-
-  .info-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .info-label {
-    font-size: 10px;
-  }
-
-  .info-value {
-    font-size: 16px;
-  }
-
-  .score-card {
-    padding: 16px;
-  }
-
-  .score-card__runs {
-    font-size: 40px;
-  }
-
-  .score-card__wickets {
-    font-size: 24px;
-  }
-
-  .innings-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-
-  .innings-card {
-    padding: 16px;
-    min-height: 160px;
-  }
-
-  .innings-header {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .innings-label {
-    font-size: 13px;
-  }
-
-  .innings-label-sub {
-    font-size: 11px;
-  }
-
-  .innings-runs {
-    font-size: 32px;
-  }
-
-  .innings-wickets {
-    font-size: 22px;
-  }
-
-  .badge--status {
-    padding: 3px 8px;
-    font-size: 9px;
-  }
-
-  .player-row {
-    grid-template-columns: 30px 1fr 1fr 1fr;
-    gap: 8px;
-    padding: 10px 6px;
-  }
-
-  .player-row__num {
-    font-size: 11px;
-  }
-
-  .player-row__name {
-    font-size: 12px;
-  }
-
-  .player-batting,
-  .player-bowling {
-    font-size: 11px;
-  }
-
-  .live-players-grid {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  }
-
-  .live-player {
-    padding: 10px;
-    gap: 6px;
-  }
-
-  .live-player__icon {
-    font-size: 20px;
-  }
-
-  .live-player__name {
-    font-size: 11px;
-  }
-
-  .live-player__role {
-    font-size: 9px;
-  }
-
-  .team-filter-tabs {
-    gap: 8px;
-    margin-top: 24px;
-    margin-bottom: 20px;
-  }
-
-  .filter-tab {
-    padding: 10px 18px;
-    font-size: 13px;
-  }
-
-  .section-title {
-    font-size: 18px;
-  }
-}
-
-@media (max-width: 480px) {
-  .details-page {
-    padding: 12px;
-    gap: 12px;
-  }
-
-  .back-btn {
-    padding: 8px 12px;
-    font-size: 12px;
-  }
-
-  .details-title {
-    font-size: 18px;
-    gap: 6px;
-  }
-
-  .details-vs {
-    font-size: 14px;
-    padding: 3px 6px;
-  }
-
-  .details-meta {
-    gap: 6px;
-  }
-
-  .badge {
-    padding: 3px 6px;
-    font-size: 9px;
-  }
-
-  .details-card {
-    padding: 12px;
-    border-radius: 10px;
-  }
-
-  .info-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .info-item {
-    gap: 6px;
-  }
-
-  .info-label {
-    font-size: 9px;
-  }
-
-  .info-value {
-    font-size: 14px;
-  }
-
-  .score-card {
-    padding: 12px;
-    border-radius: 10px;
-  }
-
-  .score-card__team {
-    font-size: 11px;
-  }
-
-  .score-card__runs {
-    font-size: 32px;
-    margin-bottom: 4px;
-  }
-
-  .score-card__wickets {
-    font-size: 18px;
-  }
-
-  .score-card__overs {
-    font-size: 11px;
-  }
-
-  .innings-cards-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .innings-card {
-    padding: 16px;
-    min-height: auto;
-    gap: 10px;
-  }
-
-  .innings-header {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 8px;
-    margin-bottom: 4px;
-  }
-
-  .innings-label {
-    font-size: 12px;
-  }
-
-  .innings-label-sub {
-    font-size: 11px;
-  }
-
-  .badge--status {
-    padding: 3px 8px;
-    font-size: 8px;
-  }
-
-  .section-divider {
-    margin: 12px 0;
-  }
-
-  .innings-score-row {
-    gap: 6px;
-    margin-bottom: 8px;
-    margin-top: auto;
-  }
-
-  .innings-runs {
-    font-size: 28px;
-  }
-
-  .innings-wickets {
-    font-size: 18px;
-  }
-
-  .innings-overs {
-    font-size: 11px;
-  }
-
-  .innings-extras,
-  .innings-target {
-    font-size: 12px;
-    padding: 6px 10px;
-    margin-bottom: 8px;
-  }
-
-  .innings-live-info {
-    padding: 12px;
-    margin-top: 12px;
-  }
-
-  .innings-live-title {
-    font-size: 12px;
-    margin-bottom: 10px;
-  }
-
-  .live-players-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .live-player {
-    padding: 10px;
-    gap: 6px;
-  }
-
-  .live-player__icon {
-    font-size: 18px;
-  }
-
-  .live-player__name {
-    font-size: 11px;
-  }
-
-  .live-player__role {
-    font-size: 8px;
-  }
-
-  .team-filter-tabs {
-    gap: 6px;
-    margin-top: 20px;
-    margin-bottom: 16px;
-  }
-
-  .filter-tab {
-    padding: 8px 14px;
-    font-size: 12px;
-  }
-
-  .section-title {
-    font-size: 16px;
-    margin-bottom: 2px;
-  }
-
-  .player-row {
-    grid-template-columns: 25px 1fr 0.9fr 0.9fr;
-    gap: 6px;
-    padding: 8px 4px;
-  }
-
-  .player-row__num {
-    font-size: 10px;
-  }
-
-  .player-row__name {
-    font-size: 11px;
-  }
-
-  .player-batting,
-  .player-bowling {
-    font-size: 10px;
-  }
-
-  .players-empty {
-    padding: 24px 12px;
-    font-size: 12px;
-  }
-}
-
-
-/* ─── OVER BOX ─── */
-.over-box {
-  background-color: var(--color-bg-card);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 20px;
-}
-
-.over-box h3 {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--color-text-primary);
-  margin: 0 0 12px 0;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.over-balls {
+/* Stats Info */
+.info-rows {
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(250, 235, 215, 0.5);
 }
 
-.over-balls span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  background-color: var(--color-accent);
-  color: white;
-  border-radius: 50%;
-  font-size: 13px;
-  font-weight: 600;
-  transition: all 0.2s ease;
+.info-row:last-child {
+  border-bottom: none;
 }
 
-.over-balls span:hover {
-  transform: scale(1.1);
-  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
-}
-
-/* ─── COMMENTARY BOX ─── */
-.commentary-box {
-  background-color: var(--color-bg-card);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 20px;
-  max-height: 300px;
-  overflow-y: auto;
-}
-
-.commentary-box h3 {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--color-text-primary);
-  margin: 0 0 12px 0;
+.info-label {
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.05em;
 }
 
-.commentary-box p {
-  font-size: 13px;
-  color: var(--color-text-secondary);
-  margin: 8px 0;
-  line-height: 1.5;
-  padding-left: 8px;
-  border-left: 3px solid var(--color-accent);
+.info-value {
+  font-weight: 700;
+  font-size: 0.875rem;
 }
 
-.commentary-box p:first-of-type {
+/* Innings Stats */
+.innings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.innings-item {
+  padding: 1.25rem;
+  border-radius: 1rem;
+  background-color: rgba(250, 235, 215, 0.3);
+  border: 1px solid var(--color-bg2);
+}
+
+.innings-header-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.innings-num {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.25rem;
+}
+
+.innings-score {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--color-dark);
+}
+
+.innings-meta {
+  text-align: right;
+}
+
+.innings-overs {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-orange);
+}
+
+.innings-status {
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+}
+
+.innings-target-info {
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: rgba(249, 115, 22, 0.1);
+  color: var(--color-orange);
+  font-weight: 700;
+  font-size: 0.75rem;
+  display: inline-block;
+}
+
+.innings-extras-info {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+/* Players Tab */
+.team-filter {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.filter-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 1px solid var(--color-bg2);
+  color: var(--color-muted);
+  transition: all 0.2s;
+  white-space: nowrap;
+  background: transparent;
+  cursor: pointer;
+}
+
+.filter-btn--active {
+  background-color: var(--color-orange);
+  border-color: var(--color-orange);
+  color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.team-section-title {
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+
+.team-section-title:first-child {
   margin-top: 0;
 }
 
-.commentary-box p:last-of-type {
-  margin-bottom: 0;
+.player-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
 }
 
-/* ─── SCROLLBAR STYLING FOR COMMENTARY ─── */
-.commentary-box::-webkit-scrollbar {
-  width: 6px;
-}
-
-.commentary-box::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.commentary-box::-webkit-scrollbar-thumb {
-  background: var(--color-accent);
-  border-radius: 3px;
-}
-
-.commentary-box::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent-dark, #ea580c);
-}
-
-/* ─── RESPONSIVE ─── */
-@media (max-width: 768px) {
-  .over-box {
-    padding: 12px;
-    margin-bottom: 16px;
-  }
-
-  .over-balls {
-    gap: 6px;
-  }
-
-  .over-balls span {
-    width: 28px;
-    height: 28px;
-    font-size: 12px;
-  }
-
-  .commentary-box {
-    padding: 12px;
-    margin-bottom: 16px;
-    max-height: 250px;
-  }
-
-  .commentary-box p {
-    font-size: 12px;
+@media (min-width: 640px) {
+  .player-cards-grid {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
-@media (max-width: 480px) {
-  .over-balls {
-    gap: 5px;
-  }
-
-  .over-balls span {
-    width: 24px;
-    height: 24px;
-    font-size: 11px;
-  }
-
-  .commentary-box {
-    max-height: 200px;
+@media (min-width: 1024px) {
+  .player-cards-grid {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
-/* ─── LIVE INFO CONTAINER (Top Section Layout) ─── */
-.live-info-container {
+.player-card {
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid var(--color-bg2);
+  background-color: rgba(253, 246, 238, 0.3);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.player-card:hover {
+  border-color: rgba(249, 115, 22, 0.3);
+  background-color: white;
+}
+
+.player-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.player-number {
+  font-size: 10px;
+  font-weight: 900;
+  color: var(--color-muted-lt);
+}
+
+.player-stats-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 1rem;
 }
 
-/* Stack on smaller screens */
-@media (max-width: 768px) {
-  .live-info-container {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
+.stat-box {
+  display: flex;
+  flex-direction: column;
 }
 
-@media (max-width: 480px) {
-  .live-info-container {
-    gap: 10px;
-    margin-bottom: 16px;
-  }
+.stat-label {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.stat-value {
+  font-weight: 900;
+  font-size: 0.875rem;
+  color: var(--color-dark);
+}
+
+.stat-meta {
+  font-size: 10px;
+  color: var(--color-muted-lt);
+  font-weight: 500;
+}
+
+.no-data {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  font-style: italic;
 }

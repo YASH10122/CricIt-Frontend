@@ -1,5 +1,5 @@
 import axios from "axios";
-import "./styles/MatchDetailsDesign3.css";
+import "./styles/MatchDetails.css";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
