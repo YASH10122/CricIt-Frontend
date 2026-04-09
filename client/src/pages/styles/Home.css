@@ -193,6 +193,10 @@
   color: var(--teal);
 }
 
+.badge--toss {
+  background: rgba(212, 209, 45, 0.5);
+  color: var(--teal);
+}
 /* Divider */
 .match-card__divider {
   height: 0.4px;
