@@ -157,7 +157,7 @@
   color: var(--dullwight);
 }
 
-.badge--upcoming { background: var(--blue); color: var(--dullwight); }
+.badge--upcoming { background: #315480; color: var(--dullwight); }
 .badge--live { background: var(--red); color: var(--dullwight); }
 .badge--finished { background: var(--litegold); color: var(--dullwight); }
 .badge--toss {background: var(--muted); color: var(--dullwight);}

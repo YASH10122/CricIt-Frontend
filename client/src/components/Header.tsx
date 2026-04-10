@@ -30,7 +30,7 @@ const Header = () => {
       setIsLogedIn(false);
       navigate('/login');
     } catch (error) {
-      toast.error('Logout error:'+ error);
+      toast.error('Logout error:' + error);
     }
   };
 
@@ -42,8 +42,8 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-container">
-        
-        
+
+
         <div className="logo-section">
           <Link to="/" className="logo" onClick={closeDropdowns}>
             <img src="/Cric_It.svg" alt="cric.it" className="logo-icon" />
@@ -52,26 +52,26 @@ const Header = () => {
           <p className="tagline">Live Cricket Score </p>
         </div>
 
-        
+{/* 
         <nav className="nav-menu">
           <Link to="/">Dashboard</Link>
           <Link to="/team">Teams</Link>
           <Link to="/player">Players</Link>
-          <Link to="/match">Matches</Link>
-        </nav>
+          <Link to="/match">Create Match</Link>
+        </nav> */}
 
-        
+
         <div className="user-section">
 
           {isLogedIn && (<div className="dropdown-wrapper">
-            <button 
+            <button
               className={`menu-btn ${isNavDropdownOpen ? 'active' : ''}`}
               onClick={() => {
                 setIsNavDropdownOpen(!isNavDropdownOpen);
                 setIsProfileDropdownOpen(false);
               }}
             >
-              <MenuIcon/>
+              <MenuIcon />
             </button>
 
             {isNavDropdownOpen && (
@@ -86,7 +86,10 @@ const Header = () => {
                   Players
                 </Link>
                 <Link to="/match" className="dropdown-item" onClick={closeDropdowns}>
-                  Matches
+                  Create Match
+                </Link>
+                <Link to="/my-matches" className="dropdown-item" onClick={closeDropdowns}>
+                  My Matches
                 </Link>
               </div>
             )}
@@ -95,25 +98,25 @@ const Header = () => {
 
 
 
-          
+
           {isLogedIn && (
             <div className="dropdown-wrapper">
-              <button 
+              <button
                 className="profile-btn"
                 onClick={() => {
                   setIsProfileDropdownOpen(!isProfileDropdownOpen);
                   setIsNavDropdownOpen(false);
                 }}
               >
-                <AccountCircleIcon/>
+                <AccountCircleIcon />
               </button>
               {isProfileDropdownOpen && (
                 <div className="dropdown-menu profile-dropdown">
                   <Link to="/profile" className="dropdown-item" onClick={closeDropdowns}>
                     My Profile
                   </Link>
-                  
-                  
+
+
                   <button className="dropdown-item logout-item" onClick={handleLogout}>
                     Logout
                   </button>
@@ -129,7 +132,7 @@ const Header = () => {
             </>
           )}
 
-          
+
         </div>
 
       </div>

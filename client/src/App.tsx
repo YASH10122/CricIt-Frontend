@@ -23,6 +23,8 @@ import PlayerHistory from "./pages/Player/PlayerHistory";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import MyMatches from "./pages/Match/MyMatches";
+import Admin from "./pages/admin/Admin";
 function App() {
   return (
     <BrowserRouter>
@@ -48,6 +50,8 @@ function App() {
         <Route path="/match-details/:matchId" element={<MatchDetails />} />
 
         <Route path="/player-history/:playerId" element={<PlayerHistory />} />
+        <Route path="/my-matches" element={<MyMatches />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
       <Footer />
     </BrowserRouter>
