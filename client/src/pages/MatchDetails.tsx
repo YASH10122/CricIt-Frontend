@@ -746,15 +746,12 @@ useEffect(() => {
               (innings.length > 0 && innings.every((inn) => inn.status === "completed"))
             ) && (
               <div className="card">
-                <h3 className="card-title">AI Player of the Match</h3>
+                <h3 className="card-title">AI Predicted Player of the Match</h3>
                 {playerOfMatchLoading ? (
                   <p className="no-data">Generating AI decision...</p>
                 ) : playerOfMatch?.playerName ? (
                   <div className="pom-wrap">
                     <p className="pom-name">{playerOfMatch.playerName}</p>
-                    <p className="pom-reason">
-                      {playerOfMatch.reason || "Best overall impact in this match."}
-                    </p>
                   </div>
                 ) : (
                   <p className="no-data">Player of the Match not available yet</p>
