@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import '../styles/Player.css'
+import './style/Player.css'
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 

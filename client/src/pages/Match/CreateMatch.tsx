@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../styles/CreateMatch.css'
+import './style/CreateMatch.css'
 import { toast } from "react-toastify";
 
 

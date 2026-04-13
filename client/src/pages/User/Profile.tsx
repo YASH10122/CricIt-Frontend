@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 const URL = import.meta.env.VITE_API_URL;
-import '../styles/Profile.css'
+import './style/Profile.css'
 import { toast } from "react-toastify";
 
 

@@ -751,6 +751,8 @@ useEffect(() => {
                   <p className="no-data">Generating AI decision...</p>
                 ) : playerOfMatch?.playerName ? (
                   <div className="pom-wrap">
+
+                    
                     <p className="pom-name">{playerOfMatch.playerName}</p>
                   </div>
                 ) : (

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "../styles/Startinning.css"
+import "./style/Startinning.css"
 import { toast } from "react-toastify";
 
 

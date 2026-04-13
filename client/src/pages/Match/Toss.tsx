@@ -2,7 +2,7 @@
   import { useState, useEffect } from 'react'
   import { useNavigate, useParams } from "react-router-dom";
   const URL = import.meta.env.VITE_API_URL;
-  import '../styles/Toss.css'
+  import './style/Toss.css'
 import Coin from  '../../components/Coin'
 import { toast } from "react-toastify";
 

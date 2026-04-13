@@ -1,5 +1,5 @@
 import axios from "axios";
-import "../styles/LiveScore.css";
+import "./style/LiveScore.css"
 
 
 import { useEffect, useState } from "react";

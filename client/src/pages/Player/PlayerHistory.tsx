@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "../styles/PlayerHistory.css";
+import "./style/PlayerHistory.css";
 import { toast } from "react-toastify";
 
 const URL = import.meta.env.VITE_API_URL;

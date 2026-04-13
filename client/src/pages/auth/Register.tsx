@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 const URL = import.meta.env.VITE_API_URL;
-import '../styles/Register.css'
+import './style/Register.css'
 import { toast } from "react-toastify";
 
 

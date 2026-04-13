@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import "../styles/Team.css";
+import "./style/Team.css";
 
 const URL = import.meta.env.VITE_API_URL;
 

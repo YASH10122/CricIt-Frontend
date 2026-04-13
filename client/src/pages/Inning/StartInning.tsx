@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "../styles/Startinning.css";
+import "./style/Startinning.css";
 import { toast } from "react-toastify";
 
 
