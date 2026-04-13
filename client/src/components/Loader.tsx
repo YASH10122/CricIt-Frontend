@@ -1,5 +1,5 @@
 import React from 'react';
-import './Style/Loadnig.css';
+import './style/Loadnig.css';
 
 interface LoadingProps {
   message?: string;
@@ -7,17 +7,39 @@ interface LoadingProps {
 }
 
 const Loading: React.FC<LoadingProps> = ({ 
-  message = 'Loading...', 
+  message = 'Loading', 
   fullScreen = false
 }) => {
+  // Split message into characters for animation
+  const characters = message.split('');
+
   return (
     <div className={`loading-container ${fullScreen ? 'loading-fullscreen' : ''}`}>
-      <div className="cricket-pitch">
-        <div className="pitch-line"></div>
-        <div className="running-batsman"></div>
-        <div className="running-batsman batsman-2"></div>
+      <div className="text-animation">
+        {characters.map((char, index) => (
+          <span 
+            key={index} 
+            className="animated-char"
+            style={{
+              animationDelay: `${index * 0.08}s`
+            }}
+          >
+            {char === ' ' ? '\u00A0' : char}
+          </span>
+        ))}
       </div>
-      <p className="loading-text">{message}</p>
+      
+      <div className="cricket-dots">
+        <div className="dot"></div>
+        <div className="dot"></div>
+        <div className="dot"></div>
+      </div>
+
+      <div className="cricket-info">
+        <span className="ball-icon">🏏</span>
+        <span className="loading-subtext">CricIt</span>
+        <span className="ball-icon">🏏</span>
+      </div>
     </div>
   );
 };
