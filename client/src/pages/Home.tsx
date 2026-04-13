@@ -130,6 +130,8 @@
         <span className="score-empty">—</span>
       );
     };
+    
+    if (loading) return <Loader />;
 
     return (
       <div className="home-page">
