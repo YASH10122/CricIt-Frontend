@@ -11,7 +11,7 @@ import Footer from "./components/Footer";
 import PlayingTeamPage from "./pages/Match/PlayingTeam";
 import Toss from "./pages/Match/Toss";
 //import PlayingTeam from "./pages/Match/PlayingTeam";
-import AllMatch from "./pages/Match/AllMatch";
+
 import StartInning from "./pages/Inning/StartInning";
 import LiveScoring from "./pages/Ball/LiveScore";
 import LiveHeader from "./components/LiveHeader";
@@ -41,7 +41,6 @@ function App() {
         <Route path="/match" element={<CreateMatch />} />
         <Route path="/playing-team/:matchId" element={<PlayingTeamPage />} />
         <Route path="/toss/:matchId" element={<Toss />} />
-        <Route path="/all" element={<AllMatch />} />
         <Route path="/startInning/:matchId" element={<StartInning />} />
         <Route path="/live-score/:matchId/:inningId" element={<LiveScoring />}/>
         <Route path="/profile" element={<Profile />} />
